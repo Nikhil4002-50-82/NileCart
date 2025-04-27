@@ -102,15 +102,9 @@ const Footer = () => {
           <div className="py-8 px-4 text-gray-900 flex justify-between">
             <span>Copyright 2025. All rights reserved</span>
             <div className="flex">
-              <div className="rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 flex items-center justify-center mr-1">
-                <IoLogoInstagram className="text-lg text-custom" />
-              </div>
-              <div className="rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 flex items-center justify-center mr-1">
-                <FaFacebookF className="text-lg text-custom" />
-              </div>
-              <div className="rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 flex items-center justify-center mr-1">
-                <FaTwitter className="text-lg text-custom" />
-              </div>
+              <IoLogoInstagram className="text-lg p-2 rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 mr-1 hover:bg-custom hover:text-white hover:border-none" />
+              <FaFacebookF className="text-lg p-2 rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 mr-1 hover:bg-custom hover:text-white hover:border-none" />
+              <FaTwitter className="text-lg p-2 rounded-3xl w-9 h-9 border-[0.1em] border-gray-300 mr-1 hover:bg-custom hover:text-white hover:border-none" />
             </div>
           </div>
         </div>

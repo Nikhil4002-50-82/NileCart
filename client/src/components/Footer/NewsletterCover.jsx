@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 const NewsletterCover = () => {
   return (
     <div className="mb-8">
-      <div className="bg-black text-white grid grid-cols-2 py-8 px-20">
+      <div className="bg-custom text-white grid grid-cols-2 py-8 px-20">
         <div className=" py-4">
           <p className="text-lg mb-2 font-semibold">
             &#x20B9;160 discount for your first order
@@ -26,7 +26,7 @@ const NewsletterCover = () => {
                 className="h-full w-[16em] focus:outline-none text-black p-2"
               />
             </span>
-            <span className="bg-black w-full h-full flex items-center justify-center rounded-lg font-semibold cursor-pointer">
+            <span className="bg-custom w-full h-full flex items-center justify-center rounded-lg font-semibold cursor-pointer">
               Subscribe
             </span>
           </div>

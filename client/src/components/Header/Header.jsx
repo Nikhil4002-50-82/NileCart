@@ -14,7 +14,7 @@ import HeaderComp from "./HeaderComp";
 const Header = () => {
   return (
     <div className="bg-white">
-      <div className="bg-black h-14 p-4 md:h-8 flex items-center justify-center ">
+      <div className="bg-custom h-14 p-4 md:h-8 flex items-center justify-center ">
         <p className="text-white text-xs text-center ">
           Due to the <span className="text-md font-semibold">TESTING</span>{" "}
           phase , orders may be processed with a slight delay
@@ -40,18 +40,18 @@ const Header = () => {
             />
             <CiSearch className="text-3xl" />
           </div>
-          <button className="bg-black text-white w-24 h-9 rounded-3xl font-semibold mr-4  flex items-center justify-center ">
+          <button className="bg-custom text-white w-24 h-9 rounded-3xl font-semibold mr-4  flex items-center justify-center ">
             Sign In
           </button>
           <button className="h-12 w-12 rounded-3xl bg-orange-200 relative flex items-center justify-center">
             <CiShoppingCart className="text-3xl" />
-            <button className="w-5 h-5 bg-red-500 text-white font-semibold rounded-3xl absolute -top-1 -right-1 flex items-center justify-center ">
+            <button className="w-5 h-5 bg-custom text-white font-semibold rounded-3xl absolute -top-1 -right-1 flex items-center justify-center ">
               0
             </button>
           </button>
         </div>
         <div className="px-4 py-6 grid grid-cols-[2fr_10fr]">
-          <div className="h-[3.5em] w-full bg-black text-white flex items-center justify-center gap-2 p-4 rounded-3xl">
+          <div className="h-[3.5em] w-full bg-custom text-white flex items-center justify-center gap-2 p-4 rounded-3xl">
             <CiMenuBurger className="text-2xl" />
             <p className="w-[60%] text-sm font-semibold text-center ">
               ALL CATEGORIES
