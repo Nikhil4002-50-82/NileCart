@@ -7,7 +7,7 @@ const FeaturedCategories = () => {
       <h1 className="font-semibold text-base sm:text-lg mb-2">
         FEATURED CATEGORIES
       </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6">
         <FeaturedCategoriesComponent
           name="Fashion"
           bg="#E6E6FA"
