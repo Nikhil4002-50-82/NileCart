@@ -11,16 +11,46 @@ const FooterContent = ({
   item7,
 }) => {
   return (
-    <div className="p-4">
-      <h1 className="text-lg font-semibold text-custom">{heading}</h1>
+    <div className="p-2 sm:p-3 md:p-4">
+      <h1 className="text-base sm:text-lg font-semibold text-custom">
+        {heading}
+      </h1>
       <ul>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item1}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item2}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item3}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item4}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item5}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item6}</li>
-        <li className="text-sm mt-3 text-gray-500 hover:text-black cursor-pointer">{item7}</li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item1}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item2}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item3}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item4}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item5}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item6}
+        </li>
+        <li
+          className="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-500 hover:text-black cursor-pointer"
+        >
+          {item7}
+        </li>
       </ul>
     </div>
   );

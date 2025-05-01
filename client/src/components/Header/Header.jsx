@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
 import { FaShopify } from "react-icons/fa";
 import { CiSearch, CiShoppingCart, CiMenuBurger } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
@@ -11,7 +10,6 @@ import { MdComputer, MdLocalGroceryStore } from "react-icons/md";
 import { PiBagSimpleFill } from "react-icons/pi";
 import { GiConverseShoe } from "react-icons/gi";
 import { ImHappy2 } from "react-icons/im";
-
 import HeaderComp from "./HeaderComp";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,69 +18,152 @@ const Header = () => {
   const mainHeader = useRef();
 
   useGSAP(() => {
-    gsap.to(mainHeader.current, {
-      y: -115,
-      position: "fixed",
-      zIndex: "50",
-      duration: "0.001s",
-      scrollTrigger: {
-        trigger: mainHeader.current,
-        start: "top top",
-        toggleActions: "play none none reverse",
-      },
+    let trigger;
+    const setupTrigger = () => {
+      if (window.innerWidth >= 768) {
+        trigger = gsap.to(mainHeader.current, {
+          y: -115,
+          position: "fixed",
+          zIndex: 50,
+          duration: 0.001,
+          scrollTrigger: {
+            trigger: mainHeader.current,
+            start: "top top",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    };
+    setupTrigger();
+    window.addEventListener("resize", () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      setupTrigger();
     });
+    return () => {
+      window.removeEventListener("resize", setupTrigger);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
     <div className="bg-white">
-      <div className="bg-custom h-14 p-4 md:h-8 flex items-center justify-center ">
-        <p className="text-white text-xs text-center ">
-          Due to the <span className="text-md font-semibold">TESTING</span>{" "}
-          phase , orders may be processed with a slight delay
+      <div
+        className="bg-custom h-12 sm:h-14 md:h-8 flex items-center justify-center 
+                   px-4 sm:px-6 md:px-8"
+      >
+        <p className="text-white text-xs sm:text-sm text-center">
+          Due to the{" "}
+          <span className="text-sm sm:text-md font-semibold">TESTING</span> phase,
+          orders may be processed with a slight delay
         </p>
       </div>
-      <div className=" py-6">
-        <div className="flex gap-4 items-center px-20">
-          <div className="flex items-center justify-center w-[11em] mr-4 px-4 text-custom">
-            <span>
-              <FaShopify className="text-5xl" />
-            </span>
-            <p className="text-3xl font-bold text-black">Shopify</p>
+      <div className="py-3 sm:py-4 md:py-6">
+        <div
+          className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 
+                     px-4 sm:px-6 md:px-10 lg:px-20"
+        >
+          <div
+            className="flex items-center justify-between w-full sm:w-auto 
+                       sm:justify-center gap-4"
+          >
+            <div className="flex items-center text-custom">
+              <FaShopify className="text-3xl sm:text-4xl md:text-5xl" />
+              <p
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-black 
+                           ml-2"
+              >
+                Shopify
+              </p>
+            </div>
+            <div
+              className="h-10 sm:h-12 w-10 sm:w-12 rounded-3xl bg-orange-200 
+                         relative flex items-center justify-center sm:hidden"
+            >
+              <CiShoppingCart className="text-2xl sm:text-3xl" />
+              <div
+                className="w-4 sm:w-5 h-4 sm:h-5 bg-custom text-white 
+                           font-semibold rounded-3xl absolute -top-1 -right-1 
+                           flex items-center justify-center text-xs"
+              >
+                0
+              </div>
+            </div>
           </div>
-          <div className="h-[3.5em] w-[11em] border-2 border-gray-400 rounded-lg flex flex-col justify-center items-around p-4">
-            <p className="text-sm text-gray-400 font-semibold">Your Location</p>
-            <p className="text-md font-semibold">All</p>
+          <div
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full 
+                       sm:w-auto sm:items-center"
+          >
+            <div
+              className="h-[3em] sm:h-[3.5em] w-full sm:w-[10em] md:w-[11em] 
+                         border-2 border-gray-400 rounded-lg flex flex-col 
+                         justify-center p-3 sm:p-4"
+            >
+              <p
+                className="text-xs sm:text-sm text-gray-400 font-semibold"
+              >
+                Your Location
+              </p>
+              <p className="text-sm sm:text-md font-semibold">All</p>
+            </div>
+            <div
+              className="bg-gray-200 w-full sm:w-[18em] md:w-[22em] lg:w-[30em] 
+                         rounded-lg flex items-center justify-center"
+            >
+              <input
+                type="text"
+                placeholder="Search for products..."
+                className="h-[3em] sm:h-[3.5em] p-3 sm:p-4 bg-gray-200 w-[90%] 
+                           focus:outline-none text-xs sm:text-sm"
+              />
+              <CiSearch className="text-xl sm:text-2xl md:text-3xl" />
+            </div>
           </div>
-          <div className="bg-gray-200 w-[30em] rounded-lg mr-10 flex items-center justify-center ">
-            <input
-              type="text"
-              placeholder="Search for products..."
-              className="h-[3.5em] p-4 bg-gray-200 w-[90%] focus:outline-none "
-            />
-            <CiSearch className="text-3xl" />
-          </div>
-          <button className="bg-custom text-white w-24 h-9 rounded-3xl font-semibold mr-4  flex items-center justify-center ">
-            Sign In
-          </button>
-          <div className="h-12 w-12 rounded-3xl bg-orange-200 relative flex items-center justify-center">
-            <CiShoppingCart className="text-3xl" />
-            <div className="w-5 h-5 bg-custom text-white font-semibold rounded-3xl absolute -top-1 -right-1 flex items-center justify-center ">
-              0
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              className="bg-custom text-white w-full h-10 sm:w-20 md:w-24 
+                         sm:h-12 md:h-9 rounded-3xl font-semibold flex 
+                         items-center justify-center text-sm sm:text-base"
+            >
+              Sign In
+            </button>
+            <div
+              className="hidden sm:flex h-10 sm:h-12 w-10 sm:w-12 rounded-3xl 
+                         bg-orange-200 relative items-center justify-center"
+            >
+              <CiShoppingCart className="text-2xl sm:text-3xl" />
+              <div
+                className="w-4 sm:w-5 h-4 sm:h-5 bg-custom text-white 
+                           font-semibold rounded-3xl absolute -top-1 -right-1 
+                           flex items-center justify-center text-xs"
+              >
+                0
+              </div>
             </div>
           </div>
         </div>
         <div
           ref={mainHeader}
-          className="px-20 py-6 grid grid-cols-[2fr_10fr] bg-white"
+          className="px-4 sm:px-6 md:px-10 lg:px-20 py-3 sm:py-4 md:py-6 
+                     grid grid-cols-1 sm:grid-cols-[2fr_10fr] gap-3 sm:gap-4 
+                     bg-white"
         >
-          <div className="h-[3.5em] w-full bg-custom text-white flex items-center justify-center gap-2 p-4 rounded-3xl">
-            <CiMenuBurger className="text-2xl" />
-            <p className="w-[60%] text-sm font-semibold text-center ">
+          <div
+            className="h-[3em] sm:h-[3.5em] w-full sm:w-auto bg-custom 
+                       text-white flex items-center justify-center gap-2 p-3 
+                       sm:p-4 rounded-3xl"
+          >
+            <CiMenuBurger className="text-lg sm:text-xl md:text-2xl" />
+            <p
+              className="w-[60%] text-xs sm:text-sm font-semibold text-center"
+            >
               ALL CATEGORIES
             </p>
-            <IoIosArrowDown />
+            <IoIosArrowDown className="text-lg sm:text-xl" />
           </div>
-          <div className="px-4 flex flex-wrap items-center gap-6">
+          <div
+            className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 
+                       px-0 sm:px-4"
+          >
             <HeaderComp Component={IoShirtSharp} name="FASHION" />
             <HeaderComp Component={MdComputer} name="ELECTRONICS" />
             <HeaderComp Component={PiBagSimpleFill} name="BAGS" />

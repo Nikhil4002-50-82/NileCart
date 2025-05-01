@@ -3,9 +3,11 @@ import FeaturedCategoriesComponent from "./FeaturedCategoriesComponent";
 
 const FeaturedCategories = () => {
   return (
-    <div className="px-20 mb-5">
-      <h1 className="font-semibold text-lg mb-2">FEATURED CATEGORIES</h1>
-      <div className="grid grid-cols-8">
+    <div className="px-4 sm:px-6 md:px-10 lg:px-20 mb-5">
+      <h1 className="font-semibold text-base sm:text-lg mb-2">
+        FEATURED CATEGORIES
+      </h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6">
         <FeaturedCategoriesComponent
           name="Fashion"
           bg="#E6E6FA"
