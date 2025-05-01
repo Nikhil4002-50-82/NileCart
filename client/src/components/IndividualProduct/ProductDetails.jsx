@@ -13,7 +13,7 @@ const ProductDetails = ({ src, title, rate, count, price, description }) => {
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "https://shopifyclone-xqn0.onrender.com/getAllProducts"
+        "https://fakestoreapi.com/products"
       );
       setData(response.data);
     } catch (error) {
