@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
 import { FaShopify } from "react-icons/fa";
 import { CiSearch, CiShoppingCart, CiMenuBurger } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
@@ -16,39 +12,8 @@ import { ImHappy2 } from "react-icons/im";
 
 import HeaderComp from "./HeaderComp";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Header = () => {
+const HeaderForOthers = () => {
   const navigate = useNavigate();
-  const mainHeader = useRef();
-
-  useGSAP(() => {
-    let trigger;
-    const setupTrigger = () => {
-      if (window.innerWidth >= 768) {
-        trigger = gsap.to(mainHeader.current, {
-          y: -115,
-          position: "fixed",
-          zIndex: 50,
-          duration: 0.001,
-          scrollTrigger: {
-            trigger: mainHeader.current,
-            start: "top top",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
-    };
-    setupTrigger();
-    window.addEventListener("resize", () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      setupTrigger();
-    });
-    return () => {
-      window.removeEventListener("resize", setupTrigger);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
 
   return (
     <div className="bg-white">
@@ -71,11 +36,14 @@ const Header = () => {
             className="flex items-center justify-between w-full sm:w-auto 
                        sm:justify-center gap-4"
           >
-            <div className="flex items-center text-custom">
+            <div className="flex items-center text-custom cursor-pointer">
               <FaShopify className="text-3xl sm:text-4xl md:text-5xl" />
               <p
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-black 
                            ml-2"
+                onClick={() => {
+                  navigate("/");
+                }}
               >
                 Shopify
               </p>
@@ -122,16 +90,6 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
-            <button
-              className="bg-custom text-white w-full h-10 sm:w-20 md:w-24 
-                         sm:h-12 md:h-9 rounded-3xl font-semibold flex 
-                         items-center justify-center text-sm sm:text-base"
-              onClick={() => {
-                navigate("/productDetails");
-              }}
-            >
-              Sign In
-            </button>
             <div
               className="hidden sm:flex h-10 sm:h-12 w-10 sm:w-12 rounded-3xl 
                          bg-orange-200 relative items-center justify-center"
@@ -148,7 +106,6 @@ const Header = () => {
           </div>
         </div>
         <div
-          ref={mainHeader}
           className="px-4 sm:px-6 md:px-10 lg:px-20 py-3 sm:py-4 md:py-6 
                      grid grid-cols-1 sm:grid-cols-[2fr_10fr] gap-3 sm:gap-4 
                      bg-white"
@@ -182,4 +139,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderForOthers;

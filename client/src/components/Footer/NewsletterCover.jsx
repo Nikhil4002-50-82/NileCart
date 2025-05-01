@@ -25,7 +25,7 @@ const NewsletterCover = () => {
                 className="h-full w-full sm:w-[12em] md:w-[16em] focus:outline-none text-black p-2 text-sm"
               />
             </span>
-            <span className="bg-custom w-[8em] sm:w-[7em] h-full flex items-center justify-center rounded-lg font-semibold cursor-pointer text-sm sm:text-base text-white">
+            <span className="bg-custom w-[8em] sm:w-[7em] md:w-full h-full flex items-center justify-center rounded-lg font-semibold cursor-pointer text-sm sm:text-base text-white">
               Subscribe
             </span>
           </div>
