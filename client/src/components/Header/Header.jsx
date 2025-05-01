@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 import { FaShopify } from "react-icons/fa";
 import { CiSearch, CiShoppingCart, CiMenuBurger } from "react-icons/ci";
@@ -11,7 +14,25 @@ import { ImHappy2 } from "react-icons/im";
 
 import HeaderComp from "./HeaderComp";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Header = () => {
+  const mainHeader = useRef();
+
+  useGSAP(() => {
+    gsap.to(mainHeader.current, {
+      y: -115,
+      position: "fixed",
+      zIndex: "50",
+      duration: "0.001s",
+      scrollTrigger: {
+        trigger: mainHeader.current,
+        start: "top top",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }, []);
+
   return (
     <div className="bg-white">
       <div className="bg-custom h-14 p-4 md:h-8 flex items-center justify-center ">
@@ -20,13 +41,13 @@ const Header = () => {
           phase , orders may be processed with a slight delay
         </p>
       </div>
-      <div className="px-20 py-6">
-        <div className="flex gap-4 items-center">
-          <div className="flex items-center justify-center w-[11em] mr-4 px-4">
+      <div className=" py-6">
+        <div className="flex gap-4 items-center px-20">
+          <div className="flex items-center justify-center w-[11em] mr-4 px-4 text-custom">
             <span>
-              <FaShopify className="text-4xl" />
+              <FaShopify className="text-5xl" />
             </span>
-            <p className="text-3xl font-semibold">Shopify</p>
+            <p className="text-3xl font-bold text-black">Shopify</p>
           </div>
           <div className="h-[3.5em] w-[11em] border-2 border-gray-400 rounded-lg flex flex-col justify-center items-around p-4">
             <p className="text-sm text-gray-400 font-semibold">Your Location</p>
@@ -43,14 +64,17 @@ const Header = () => {
           <button className="bg-custom text-white w-24 h-9 rounded-3xl font-semibold mr-4  flex items-center justify-center ">
             Sign In
           </button>
-          <button className="h-12 w-12 rounded-3xl bg-orange-200 relative flex items-center justify-center">
+          <div className="h-12 w-12 rounded-3xl bg-orange-200 relative flex items-center justify-center">
             <CiShoppingCart className="text-3xl" />
-            <button className="w-5 h-5 bg-custom text-white font-semibold rounded-3xl absolute -top-1 -right-1 flex items-center justify-center ">
+            <div className="w-5 h-5 bg-custom text-white font-semibold rounded-3xl absolute -top-1 -right-1 flex items-center justify-center ">
               0
-            </button>
-          </button>
+            </div>
+          </div>
         </div>
-        <div className="px-4 py-6 grid grid-cols-[2fr_10fr]">
+        <div
+          ref={mainHeader}
+          className="px-20 py-6 grid grid-cols-[2fr_10fr] bg-white"
+        >
           <div className="h-[3.5em] w-full bg-custom text-white flex items-center justify-center gap-2 p-4 rounded-3xl">
             <CiMenuBurger className="text-2xl" />
             <p className="w-[60%] text-sm font-semibold text-center ">
