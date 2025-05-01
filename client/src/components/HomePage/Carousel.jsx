@@ -9,10 +9,10 @@ const CarouselComponent = () => {
         width="100%"
         showArrows={true}
         transitionTime={1000}
-        className="mb-4 max-w-[85vw] sm:max-w-[90vw] md:max-w-[85vw]"
+        className="mb-4 max-w-[90vw] md:max-w-[85vw]"
         showStatus={false}
         showThumbs={false}
-        infiniteLoop={true}
+        infiniteLoop={false}
         autoPlay={true}
         interval={5000}
       >
