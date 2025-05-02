@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { FaMinus } from "react-icons/fa6";
@@ -7,13 +7,17 @@ import { MdOutlineAdd } from "react-icons/md";
 import { CiShoppingCart } from "react-icons/ci";
 
 import HeaderForOthers from "../Header/HeaderForOthers";
+import Card from "../HomePage/Card";
 
 const ProductDetails = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   const [data, setData] = useState(null);
+  const [relatedData, setRelatedData] = useState([]);
 
-  const getAllData = async () => {
+  const getIndividualData = async () => {
     try {
       const response = await axios.get(
         `https://fakestoreapi.com/products/${id}`
@@ -24,9 +28,38 @@ const ProductDetails = () => {
     }
   };
 
+  const getAllData = async () => {
+    try {
+      const response = await axios.get("https://fakestoreapi.com/products");
+      setRelatedData(
+        response.data.filter((obj) => obj.category === data.category)
+      );
+    } catch (error) {
+      console.log(`error message:${error.message}`);
+    }
+  };
+
+  const createCards = (obj) => {
+    return (
+      <Card
+        key={obj.id}
+        src={obj.image}
+        title={obj.title}
+        price={obj.price}
+        onClick={() => {
+          navigate(`/productDetails/${obj.id}`);
+        }}
+      />
+    );
+  };
+
   useEffect(() => {
-    getAllData();
-  }, []);
+    getIndividualData();
+  }, [id]);
+
+  useEffect(() => {
+    if (data && data.category) getAllData();
+  }, [data]);
 
   return (
     <div>
@@ -111,7 +144,7 @@ const ProductDetails = () => {
           <div
             className="px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-10 h-auto w-full 
                        bg-orange-200 flex flex-col justify-center rounded-3xl 
-                       mb-8 sm:mb-10"
+                       mb-10"
           >
             <h1 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold">
               Description
@@ -125,6 +158,12 @@ const ProductDetails = () => {
                 perferendis. Alias voluptate voluptatibus sunt.
               </span>
             </p>
+          </div>
+          <div >
+            <h1 className="font-semibold text-base sm:text-lg mb-2">RELATED PRODUCTS</h1>
+            <div className="flex flex-wrap gap-8 mb-6">
+            {relatedData.length > 0 && relatedData.map(createCards)}
+            </div>
           </div>
         </div>
       )}
