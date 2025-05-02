@@ -6,5 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server:{
     open:true,
+    proxy:{
+      "/api":{
+        target:"https://fakestoreapi.com",
+        changeOrigin:true,
+        rewrite:path=>path.replace(/^\/api/, '')
+      }
+    }
   }
 })

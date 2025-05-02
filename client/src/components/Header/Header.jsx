@@ -28,6 +28,7 @@ const Header = () => {
       if (window.innerWidth >= 768) {
         trigger = gsap.to(mainHeader.current, {
           y: -115,
+          boxShadow: " 0 4px 6px rgba(0, 0, 0, 0.1)",
           position: "fixed",
           zIndex: 50,
           duration: 0.001,
@@ -71,7 +72,12 @@ const Header = () => {
             className="flex items-center justify-between w-full sm:w-auto 
                        sm:justify-center gap-4"
           >
-            <div className="flex items-center text-custom">
+            <div
+              className="flex items-center text-custom cursor-pointer"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <FaShopify className="text-3xl sm:text-4xl md:text-5xl" />
               <p
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-black 
@@ -144,34 +150,38 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div
-          ref={mainHeader}
-          className="px-4 sm:px-6 md:px-10 lg:px-20 py-3 sm:py-4 md:py-6 
+        <div className="relative">
+          <div className="h-[15em] md:h-[10em]">
+            <div
+              ref={mainHeader}
+              className="px-4 sm:px-6 md:px-10 lg:px-20 py-3 sm:py-4 md:py-6 
                      grid grid-cols-1 sm:grid-cols-[2fr_10fr] gap-3 sm:gap-4 
                      bg-white"
-        >
-          <div
-            className="h-[3em] sm:h-[3.5em] w-full sm:w-auto bg-custom 
+            >
+              <div
+                className="h-[3em] sm:h-[3.5em] w-full sm:w-auto bg-custom 
                        text-white flex items-center justify-center gap-2 p-3 
                        sm:p-4 rounded-3xl"
-          >
-            <CiMenuBurger className="text-lg sm:text-xl md:text-2xl" />
-            <p className="w-[60%] text-xs sm:text-sm font-semibold text-center">
-              ALL CATEGORIES
-            </p>
-            <IoIosArrowDown className="text-lg sm:text-xl" />
-          </div>
-          <div
-            className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 
+              >
+                <CiMenuBurger className="text-lg sm:text-xl md:text-2xl" />
+                <p className="w-[60%] text-xs sm:text-sm font-semibold text-center">
+                  ALL CATEGORIES
+                </p>
+                <IoIosArrowDown className="text-lg sm:text-xl" />
+              </div>
+              <div
+                className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 
                        px-0 sm:px-4"
-          >
-            <HeaderComp Component={IoShirtSharp} name="FASHION" />
-            <HeaderComp Component={MdComputer} name="ELECTRONICS" />
-            <HeaderComp Component={PiBagSimpleFill} name="BAGS" />
-            <HeaderComp Component={GiConverseShoe} name="FOOTWEAR" />
-            <HeaderComp Component={MdLocalGroceryStore} name="GROCERIES" />
-            <HeaderComp Component={ImHappy2} name="BEAUTY" />
-            <HeaderComp Component={ImHappy2} name="WELLNESS" />
+              >
+                <HeaderComp Component={IoShirtSharp} name="FASHION" />
+                <HeaderComp Component={MdComputer} name="ELECTRONICS" />
+                <HeaderComp Component={PiBagSimpleFill} name="BAGS" />
+                <HeaderComp Component={GiConverseShoe} name="FOOTWEAR" />
+                <HeaderComp Component={MdLocalGroceryStore} name="GROCERIES" />
+                <HeaderComp Component={ImHappy2} name="BEAUTY" />
+                <HeaderComp Component={ImHappy2} name="WELLNESS" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

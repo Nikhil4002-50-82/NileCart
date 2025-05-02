@@ -4,17 +4,18 @@ import { Carousel } from "react-responsive-carousel";
 
 const CarouselComponent = () => {
   return (
-    <div className="flex w-full items-center justify-center px-4 sm:px-6 md:px-8">
+    <div className="flex w-full items-center justify-center">
       <Carousel
         width="100%"
         showArrows={true}
         transitionTime={1000}
-        className="mb-4 max-w-[90vw] md:max-w-[85vw]"
+        className="mb-4 max-w-[95vw] "
         showStatus={false}
         showThumbs={false}
-        infiniteLoop={false}
+        infiniteLoop={true}
         autoPlay={true}
-        interval={5000}
+        interval={3000}
+        dynamicHeight={true}
       >
         <div>
           <img

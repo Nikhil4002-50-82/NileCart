@@ -6,7 +6,6 @@ import { FaMinus } from "react-icons/fa6";
 import { MdOutlineAdd } from "react-icons/md";
 import { CiShoppingCart } from "react-icons/ci";
 
-import HeaderForOthers from "../Header/HeaderForOthers";
 import Card from "../HomePage/Card";
 
 const ProductDetails = () => {
@@ -19,9 +18,7 @@ const ProductDetails = () => {
 
   const getIndividualData = async () => {
     try {
-      const response = await axios.get(
-        `https://fakestoreapi.com/products/${id}`
-      );
+      const response = await axios.get(`/api/products/${id}`);
       setData(response.data);
     } catch (error) {
       console.log(`error message: ${error.message}`);
@@ -30,7 +27,7 @@ const ProductDetails = () => {
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      const response = await axios.get("/api/products");
       setRelatedData(
         response.data.filter((obj) => obj.category === data.category)
       );
@@ -63,7 +60,6 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <HeaderForOthers />
       {data && (
         <div className="px-4 sm:px-6 md:px-10 lg:px-16">
           <div
@@ -76,7 +72,7 @@ const ProductDetails = () => {
                 alt={data.title}
                 className="h-full w-full 
                            border-[0.1em] border-orange-100 shadow-2xl 
-                           shadow-orange-400 rounded-2xl object-cover hover:shadow-black"
+                           shadow-orange-400 rounded-2xl object-cover"
               />
             </div>
             <div className="px-4 sm:px-6 md:px-8 flex flex-col">
@@ -159,10 +155,12 @@ const ProductDetails = () => {
               </span>
             </p>
           </div>
-          <div >
-            <h1 className="font-semibold text-base sm:text-lg mb-2">RELATED PRODUCTS</h1>
+          <div>
+            <h1 className="font-semibold text-base sm:text-lg mb-2">
+              RELATED PRODUCTS
+            </h1>
             <div className="flex flex-wrap gap-8 mb-6">
-            {relatedData.length > 0 && relatedData.map(createCards)}
+              {relatedData.length > 0 && relatedData.map(createCards)}
             </div>
           </div>
         </div>
