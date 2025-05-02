@@ -126,9 +126,6 @@ const Header = () => {
               className="bg-custom text-white w-full h-10 sm:w-20 md:w-24 
                          sm:h-12 md:h-9 rounded-3xl font-semibold flex 
                          items-center justify-center text-sm sm:text-base"
-              onClick={() => {
-                navigate("/productDetails");
-              }}
             >
               Sign In
             </button>

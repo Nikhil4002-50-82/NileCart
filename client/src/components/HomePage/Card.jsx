@@ -1,8 +1,8 @@
 import React from "react";
 
-const Card = ({ src, title, price }) => {
+const Card = ({ src, title, price, onClick }) => {
   return (
-    <div>
+    <div onClick={onClick}>
       <div
         className="w-[10em] sm:w-[11em] md:w-[12em] h-auto bg-orange-100 
                    hover:shadow-orange-400 hover:shadow-2xl border-[0.1em] 

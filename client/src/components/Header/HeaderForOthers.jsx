@@ -90,6 +90,16 @@ const HeaderForOthers = () => {
             </div>
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              className="bg-custom text-white w-full h-10 sm:w-20 md:w-24 
+                         sm:h-12 md:h-9 rounded-3xl font-semibold flex 
+                         items-center justify-center text-sm sm:text-base"
+              onClick={() => {
+                navigate("/productDetails");
+              }}
+            >
+              Log Out
+            </button>
             <div
               className="hidden sm:flex h-10 sm:h-12 w-10 sm:w-12 rounded-3xl 
                          bg-orange-200 relative items-center justify-center"

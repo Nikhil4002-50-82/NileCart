@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import { FaMinus } from "react-icons/fa6";
@@ -7,13 +8,15 @@ import { CiShoppingCart } from "react-icons/ci";
 
 import HeaderForOthers from "../Header/HeaderForOthers";
 
-const ProductDetails = ({ src, title, rate, count, price, description }) => {
-  const [data, setData] = useState([]);
+const ProductDetails = () => {
+  const { id } = useParams();
+
+  const [data, setData] = useState(null);
 
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "https://fakestoreapi.com/products"
+        `https://fakestoreapi.com/products/${id}`
       );
       setData(response.data);
     } catch (error) {
@@ -28,39 +31,41 @@ const ProductDetails = ({ src, title, rate, count, price, description }) => {
   return (
     <div>
       <HeaderForOthers />
-      {data.length > 0 && (
+      {data && (
         <div className="px-4 sm:px-6 md:px-10 lg:px-16">
           <div
             className="grid grid-cols-1 sm:grid-cols-[3fr_6fr] gap-4 sm:gap-6 
                        h-auto mb-10 sm:mb-14"
           >
-            <div className="px-4 sm:px-6 md:px-8">
+            <div className="mb-6 px-6 md:mb-0 md:px-8">
               <img
-                src={src}
-                alt={title}
-                className="h-[15em] sm:h-[20em] md:h-[25em] w-full 
+                src={data.image}
+                alt={data.title}
+                className="h-full w-full 
                            border-[0.1em] border-orange-100 shadow-2xl 
-                           shadow-orange-400 rounded-2xl object-cover"
+                           shadow-orange-400 rounded-2xl object-cover hover:shadow-black"
               />
             </div>
-            <div
-              className="px-4 sm:px-6 md:px-8 flex flex-col"
-            >
+            <div className="px-4 sm:px-6 md:px-8 flex flex-col">
               <h1
                 className="text-lg sm:text-xl md:text-2xl font-semibold w-full 
                            sm:w-[60%] mb-3 sm:mb-4"
               >
-                {title}
+                {data.title}
               </h1>
               <p className="text-sm sm:text-md font-semibold mb-4 sm:mb-6">
-                <span className="mr-3 sm:mr-4 text-gray-800">{rate}⭐</span>
-                <span className="text-gray-500">{count} reviews</span>
+                <span className="mr-3 sm:mr-4 text-gray-800">
+                  {data.rating.rate}⭐
+                </span>
+                <span className="text-gray-500">
+                  {data.rating.count} reviews
+                </span>
               </p>
               <p
                 className="text-red-600 font-semibold text-lg sm:text-xl 
                            mb-2"
               >
-                ₹{price}
+                ₹{data.price}
               </p>
               <p
                 className="text-base sm:text-lg text-green-600 font-semibold 
@@ -112,7 +117,7 @@ const ProductDetails = ({ src, title, rate, count, price, description }) => {
               Description
             </h1>
             <p className="text-sm sm:text-base">
-              {description}
+              {data.description}
               <span>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Blanditiis perferendis odit quasi. Est accusamus dolore tempore

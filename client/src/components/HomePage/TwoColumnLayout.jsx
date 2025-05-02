@@ -4,18 +4,18 @@ import Card from "./Card";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ProductDetails from "../IndividualProduct/ProductDetails";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const TwoColumnLayout = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState([]);
 
   const getAllData = async () => {
     try {
-      const response = await axios.get(
-        "https://fakestoreapi.com/products"
-      );
+      const response = await axios.get("https://fakestoreapi.com/products");
       setData(response.data);
     } catch (error) {
       console.log(`error message:${error.message}`);
@@ -37,28 +37,22 @@ const TwoColumnLayout = () => {
         trigger: wrapper.current,
         start: "top 30%",
         end: "bottom bottom",
-        pin: left.current, // Pin only the left/orange box
+        pin: left.current,
         pinSpacing: false,
       },
-      // Avoid creating extra space
     });
   }, []);
 
   const createCards = (obj) => {
     return (
-      <Card key={obj.id} src={obj.image} title={obj.title} price={obj.price} />
-    );
-  };
-  const createProductDetails = (obj) => {
-    return (
-      <ProductDetails
+      <Card
         key={obj.id}
         src={obj.image}
         title={obj.title}
         price={obj.price}
-        count={obj.count}
-        rate={obj.rate}
-        description={obj.description}
+        onClick={() => {
+          navigate(`/productDetails/${obj.id}`);
+        }}
       />
     );
   };
