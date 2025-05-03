@@ -1,4 +1,5 @@
 import React from "react";
+
 import FeaturedCategories from "./FeaturedCategories.jsx";
 import TwoColumnLayout from "./TwoColumnLayout.jsx";
 import Carousel from "./Carousel.jsx";

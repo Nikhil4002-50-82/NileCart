@@ -17,10 +17,8 @@ const CarouselComponent = () => {
         interval={5000}
         dynamicHeight={true}
       >
-        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/SAMSUNG/MayART25/30April/neww/1242_Live_2c_07.gif')]">
-        </div>
-        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/nbshagun/MayArt/A55/D237554350_IN_MAYART25_Samsung_S24Ultra1242x450.gif')]">
-        </div>
+        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/SAMSUNG/MayART25/30April/neww/1242_Live_2c_07.gif')]"></div>
+        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/nbshagun/MayArt/A55/D237554350_IN_MAYART25_Samsung_S24Ultra1242x450.gif')]"></div>
         <div>
           <img
             src="https://m.media-amazon.com/images/G/31/img23/Wireless/nbshagun/MayArt/A55/Header.gif"
@@ -28,8 +26,6 @@ const CarouselComponent = () => {
             className="object-cover h-[20vh] md:h-[70vh] w-full"
           />
         </div>
-        
-        
       </Carousel>
     </div>
   );
