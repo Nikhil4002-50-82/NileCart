@@ -118,7 +118,7 @@ const Header = () => {
               <p className="text-xs sm:text-sm text-gray-400 font-semibold">
                 Your Location
               </p>
-              <p className="text-sm sm:text-md font-semibold">All</p>
+              <p className="text-sm sm:text-md font-semibold">India</p>
             </div>
             <div
               className="bg-gray-200 w-full sm:w-[18em] md:w-[22em] lg:w-[30em] 

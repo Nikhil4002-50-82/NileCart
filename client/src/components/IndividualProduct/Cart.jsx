@@ -11,7 +11,7 @@ const Cart = () => {
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("/api/products");
+      const response = await axios.get("https://fakestoreapi.com/products");
       setData(response.data);
     } catch (error) {
       console.log(`error message: ${error.message}`);
