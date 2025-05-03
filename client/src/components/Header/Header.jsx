@@ -102,7 +102,7 @@ const Header = () => {
                            font-semibold rounded-3xl absolute -top-1 -right-1 
                            flex items-center justify-center text-xs"
               >
-                0
+                1
               </div>
             </div>
           </div>
