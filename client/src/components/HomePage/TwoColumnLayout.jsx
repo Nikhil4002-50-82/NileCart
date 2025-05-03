@@ -65,8 +65,8 @@ const TwoColumnLayout = () => {
       >
         <div ref={left} className="hidden md:block">
           <div className="flex flex-col gap-5 h-[350vh]">
-            <div className="bg-[url('https://img.freepik.com/premium-psd/social-media-ads-mobile-phone-ads-super-sale-discount-offer-instagram-post-design_534178-189.jpg')] bg-cover bg-center h-[20em]"></div>
-            <div className="bg-[url('https://img.freepik.com/premium-psd/smart-mobile-phone-sale-ads-design-template_987701-1628.jpg')] bg-cover bg-center h-[20em]"></div>
+            <div className="bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/Priya/A55/coop_freebie_SamsungA55.gif')] bg-cover bg-center h-[25em]"></div>
+            <div className="bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/CatPage/MayART25/Event/header/PC_Event_MayArt-header-with-navigator_03.jpg')] bg-cover bg-center h-[20em]"></div>
           </div>
         </div>
         <div ref={right} className="h-auto w-full">

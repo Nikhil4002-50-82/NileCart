@@ -10,34 +10,26 @@ const CarouselComponent = () => {
         showArrows={true}
         transitionTime={1000}
         className="mb-4 max-w-[95vw] "
-        showStatus={false}
+        showStatus={true}
         showThumbs={false}
-        infiniteLoop={true}
+        infiniteLoop={false}
         autoPlay={true}
-        interval={3000}
+        interval={5000}
         dynamicHeight={true}
       >
+        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/SAMSUNG/MayART25/30April/neww/1242_Live_2c_07.gif')]">
+        </div>
+        <div className="h-[20vh] md:h-[70vh] w-full bg-cover bg-center bg-[url('https://m.media-amazon.com/images/G/31/img23/Wireless/nbshagun/MayArt/A55/D237554350_IN_MAYART25_Samsung_S24Ultra1242x450.gif')]">
+        </div>
         <div>
           <img
-            src="https://api.spicezgold.com/download/file_1734524985581_NewProject(11).jpg"
+            src="https://m.media-amazon.com/images/G/31/img23/Wireless/nbshagun/MayArt/A55/Header.gif"
             alt="Slide 1"
-            className="object-cover h-[30vh] sm:h-[40vh] md:h-[50vh] w-full"
+            className="object-cover h-[20vh] md:h-[70vh] w-full"
           />
         </div>
-        <div>
-          <img
-            src="https://api.spicezgold.com/download/file_1734525002307_1723967638078_slideBanner1.6bbeed1a0c8ffb494f7c.jpg"
-            alt="Slide 2"
-            className="object-cover h-[30vh] sm:h-[40vh] md:h-[50vh] w-full"
-          />
-        </div>
-        <div>
-          <img
-            src="https://api.spicezgold.com/download/file_1734524878924_1721277298204_banner.jpg"
-            alt="Slide 3"
-            className="object-cover h-[30vh] sm:h-[40vh] md:h-[50vh] w-full"
-          />
-        </div>
+        
+        
       </Carousel>
     </div>
   );

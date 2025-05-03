@@ -126,6 +126,8 @@ const Cart = () => {
                 <MdCancel className="text-2xl sm:text-3xl text-custom" />
               </div>
             </div>
+
+            
           )}
         </div>
       </div>
