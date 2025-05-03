@@ -62,7 +62,7 @@ const CartProducts = ({ src, title, rate, count, price }) => {
         </div>
         
       </div>
-      <hr className="h-[0.1em] bg-gray-200 mb-4"/>
+      <hr className="h-[0.1em] min-w-[600px] sm:min-w-[700px] bg-gray-200 mb-2"/>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import FooterContent from "./FooterContent";
+// import FooterContent from "./FooterContent";
 import NewsletterCover from "../Footer/NewsletterCover";
 import { IoLogoInstagram } from "react-icons/io";
 import {
@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <div>
       <NewsletterCover />
-      <div className="px-4 sm:px-6 md:px-10 lg:px-16 w-full">
+      {/* <div className="px-4 sm:px-6 md:px-10 lg:px-16 w-full">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 mb-4">
           <div className="flex items-center p-2 sm:p-3 md:p-4 border-r-[0.2em] border-gray-200 md:border-r md:border-gray-200">
             <FaTshirt className="text-gray-700 text-2xl sm:text-2.5xl md:text-3xl mr-1 sm:mr-2" />
@@ -86,9 +86,9 @@ const Footer = () => {
             item6="Packaged Produce"
             item7="Party Trays"
           />
-        </div>
+        </div> */}
         <div>
-          <div className="py-6 sm:py-8 px-2 sm:px-4 text-gray-900 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="py-8 px-4 md:px-16 text-gray-900 flex flex-row justify-between items-center gap-4">
             <span className="text-xs sm:text-sm">Copyright 2025. All rights reserved</span>
             <div className="flex">
               <IoLogoInstagram
@@ -103,7 +103,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      {/* {/* </div> */}
     </div>
   );
 };

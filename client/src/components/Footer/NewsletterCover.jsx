@@ -3,7 +3,7 @@ import { MdEmail } from "react-icons/md";
 
 const NewsletterCover = () => {
   return (
-    <div className="mb-8">
+    <div className="">
       <div className="bg-custom text-white grid grid-cols-1 md:grid-cols-2 py-4 sm:py-6 md:py-8 px-4 sm:px-6 md:px-10 lg:px-20 gap-4 md:gap-0">
         <div className="py-4">
           <p className="text-base sm:text-lg mb-2 font-semibold">

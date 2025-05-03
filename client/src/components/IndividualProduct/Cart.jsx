@@ -37,7 +37,7 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="px-16">
+      <div className="px-6 md:px-16">
         <h1 className="text-base sm:text-lg font-semibold">YOUR CART</h1>
         <p className="text-sm sm:text-md text-gray-700 mb-3 sm:mb-4">
           There are <span className="text-red-600 font-semibold">21</span>{" "}
