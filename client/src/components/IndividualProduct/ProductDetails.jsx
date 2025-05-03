@@ -15,6 +15,8 @@ const ProductDetails = () => {
 
   const [data, setData] = useState(null);
   const [relatedData, setRelatedData] = useState([]);
+  const [count, setCount] = useState(1);
+  const [addToCartBtn, setAddToCartBtn] = useState(false);
 
   const getIndividualData = async () => {
     try {
@@ -35,6 +37,17 @@ const ProductDetails = () => {
       console.log(`error message:${error.message}`);
     }
   };
+
+  // const addToCart = async () => {
+  //   const cart = { products: [{ id: id, count: count }] };
+  //   try {
+  //     const response = await axios.post("https://fakestoreapi.com/carts", cart);
+  //   } catch (error) {
+  //     console.log(`error message:${error.message}`);
+  //   } finally {
+  //     setAddToCartBtn(false);
+  //   }
+  // };
 
   const createCards = (obj) => {
     return (
@@ -57,6 +70,10 @@ const ProductDetails = () => {
   useEffect(() => {
     if (data && data.category) getAllData();
   }, [data]);
+
+  // useEffect(() => {
+  //   if (addToCartBtn) addToCart();
+  // }, [addToCartBtn]);
 
   return (
     <div>
@@ -83,7 +100,7 @@ const ProductDetails = () => {
                 {data.title}
               </h1>
               <p className="text-sm sm:text-md font-semibold mb-4 sm:mb-6">
-                <span className="mr-3 sm:mr-4 text-gray-800">
+                <span className="mr-4 text-gray-800">
                   {data.rating.rate}⭐
                 </span>
                 <span className="text-gray-500">
@@ -113,14 +130,22 @@ const ProductDetails = () => {
                   className="h-8 sm:h-10 w-8 sm:w-10 rounded-full border-[0.1em] 
                              bg-orange-200 flex items-center justify-center 
                              mr-3 sm:mr-4"
+                  onClick={() => {
+                    {
+                      count > 1 && setCount(count - 1);
+                    }
+                  }}
                 >
                   <FaMinus className="text-xs sm:text-sm" />
                 </button>
-                <p className="mr-3 sm:mr-4 text-lg sm:text-xl">1</p>
+                <p className="mr-3 sm:mr-4 text-lg sm:text-xl">{count}</p>
                 <button
                   className="h-8 sm:h-10 w-8 sm:w-10 rounded-full border-[0.1em] 
                              bg-orange-200 flex items-center justify-center 
                              mr-6 sm:mr-10"
+                  onClick={() => {
+                    setCount(count + 1);
+                  }}
                 >
                   <MdOutlineAdd className="text-base sm:text-lg text-black" />
                 </button>
@@ -128,6 +153,9 @@ const ProductDetails = () => {
                   className="w-[10em] h-[3em] md:h-[2em] bg-custom rounded-3xl 
                              text-white font-semibold text-base sm:text-lg 
                              p-4 sm:p-6 flex items-center justify-between"
+                  onClick={() => {
+                    setAddToCartBtn(true);
+                  }}
                 >
                   <span>
                     <CiShoppingCart className="text-white text-3xl" />

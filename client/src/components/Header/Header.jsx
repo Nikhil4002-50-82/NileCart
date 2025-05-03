@@ -1,58 +1,61 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/ScrollTrigger";
+// import gsap from "gsap";
+// import { useGSAP } from "@gsap/react";
+// import ScrollTrigger from "gsap/ScrollTrigger";
 
-import { FaShopify } from "react-icons/fa";
+// import { FaShopify } from "react-icons/fa";
 import { CiSearch, CiShoppingCart, CiMenuBurger } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoShirtSharp } from "react-icons/io5";
-import { MdComputer, MdLocalGroceryStore } from "react-icons/md";
-import { PiBagSimpleFill } from "react-icons/pi";
-import { GiConverseShoe } from "react-icons/gi";
-import { ImHappy2 } from "react-icons/im";
+// import { IoIosArrowDown } from "react-icons/io";
+// import { IoShirtSharp } from "react-icons/io5";
+// import { MdComputer, MdLocalGroceryStore } from "react-icons/md";
+// import { PiBagSimpleFill } from "react-icons/pi";
+// import { GiConverseShoe } from "react-icons/gi";
+// import { ImHappy2 } from "react-icons/im";
+import { FaCartArrowDown } from "react-icons/fa6";
 
-import HeaderComp from "./HeaderComp";
+// import HeaderComp from "./HeaderComp";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const Header = () => {
   const navigate = useNavigate();
   const mainHeader = useRef();
 
-  useGSAP(() => {
-    let trigger;
-    const setupTrigger = () => {
-      if (window.innerWidth >= 768) {
-        trigger = gsap.to(mainHeader.current, {
-          y: -115,
-          boxShadow: " 0 4px 6px rgba(0, 0, 0, 0.1)",
-          position: "fixed",
-          zIndex: 50,
-          duration: 0.001,
-          scrollTrigger: {
-            trigger: mainHeader.current,
-            start: "top top",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
-    };
-    setupTrigger();
-    window.addEventListener("resize", () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      setupTrigger();
-    });
-    return () => {
-      window.removeEventListener("resize", setupTrigger);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+  // useGSAP(() => {
+  //   let trigger;
+  //   const setupTrigger = () => {
+  //     if (window.innerWidth >= 768) {
+  //       trigger = gsap.to(mainHeader.current, {
+  //         y: -115,
+  //         boxShadow: " 0 4px 6px rgba(0, 0, 0, 0.1)",
+  //         position: "fixed",
+  //         zIndex: 50,
+  //         duration: 0.001,
+  //         scrollTrigger: {
+  //           trigger: mainHeader.current,
+  //           start: "top top",
+  //           toggleActions: "play none none reverse",
+  //         },
+  //       });
+  //     }
+  //   };
+  //   setupTrigger();
+  //   window.addEventListener("resize", () => {
+  //     ScrollTrigger.getAll().forEach((t) => t.kill());
+  //     setupTrigger();
+  //   });
+  //   return () => {
+  //     window.removeEventListener("resize", setupTrigger);
+  //     ScrollTrigger.getAll().forEach((t) => t.kill());
+  //   };
+  // }, []);
 
   return (
-    <div className="bg-white">
+    <div className="relative">
+      <div className="h-[17.5em] md:h-[10em]">
+      <div className="bg-white lg:fixed w-full z-50 lg:shadow-custom lg:shadow-orange-50" >
       <div
         className="bg-custom h-12 sm:h-14 md:h-8 flex items-center justify-center 
                    px-4 sm:px-6 md:px-8"
@@ -70,7 +73,7 @@ const Header = () => {
         >
           <div
             className="flex items-center justify-between w-full sm:w-auto 
-                       sm:justify-center gap-4"
+                       sm:justify-center gap-6"
           >
             <div
               className="flex items-center text-custom cursor-pointer"
@@ -78,17 +81,20 @@ const Header = () => {
                 navigate("/");
               }}
             >
-              <FaShopify className="text-3xl sm:text-4xl md:text-5xl" />
+              <FaCartArrowDown className="text-3xl md:text-5xl" />
               <p
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-black 
-                           ml-2"
+                           ml-1"
               >
-                Shopify
+                NileCart
               </p>
             </div>
             <div
               className="h-10 sm:h-12 w-10 sm:w-12 rounded-3xl bg-orange-200 
-                         relative flex items-center justify-center sm:hidden"
+                         relative flex items-center justify-center sm:hidden cursor-pointer"
+              onClick={() => {
+                navigate("/cart");
+              }}
             >
               <CiShoppingCart className="text-2xl sm:text-3xl" />
               <div
@@ -137,7 +143,10 @@ const Header = () => {
             </button>
             <div
               className="hidden sm:flex h-10 sm:h-12 w-10 sm:w-12 rounded-3xl 
-                         bg-orange-200 relative items-center justify-center"
+                         bg-orange-200 relative items-center justify-center cursor-pointer"
+              onClick={() => {
+                navigate("/cart");
+              }}
             >
               <CiShoppingCart className="text-2xl sm:text-3xl" />
               <div
@@ -150,7 +159,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="relative">
+        {/* <div className="relative">
           <div className="h-[15em] md:h-[10em]">
             <div
               ref={mainHeader}
@@ -183,7 +192,9 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+      </div>
+    </div>
       </div>
     </div>
   );

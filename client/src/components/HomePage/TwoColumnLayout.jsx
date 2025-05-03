@@ -35,7 +35,7 @@ const TwoColumnLayout = () => {
       duration: 0.001,
       scrollTrigger: {
         trigger: wrapper.current,
-        start: "top 30%",
+        start: "top 25%",
         end: "bottom bottom",
         pin: left.current,
         pinSpacing: false,

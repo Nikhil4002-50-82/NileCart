@@ -8,12 +8,11 @@ const Card = ({ src, title, price, onClick }) => {
                    hover:shadow-orange-400 hover:shadow-2xl border-[0.1em] 
                    border-orange-200 rounded-2xl"
       >
-        <img
-          src={src}
-          alt={title}
-          className="w-full h-[12em] sm:h-[14em] md:h-[16em] mb-1 rounded-t-2xl 
-                     object-cover"
-        />
+        <div
+          className={`w-full h-[12em] sm:h-[14em] md:h-[16em] mb-1 rounded-t-2xl 
+                     object-cover bg-center bg-cover`}
+                     style={{ backgroundImage: `url(${src})` }}
+        ></div>
         <div className="p-2 sm:p-3 md:p-4">
           <p className="text-xs sm:text-sm font-semibold mb-1">{title}</p>
           <p className="text-sm sm:text-base md:text-lg text-green-600 font-semibold">
