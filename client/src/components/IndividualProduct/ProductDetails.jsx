@@ -108,7 +108,7 @@ const ProductDetails = () => {
                 </span>
               </p>
               <p
-                className="text-red-600 font-semibold text-lg sm:text-xl 
+                className="text-custom font-semibold text-lg sm:text-xl 
                            mb-2"
               >
                 ₹{data.price}
@@ -167,7 +167,7 @@ const ProductDetails = () => {
           </div>
           <div
             className="px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-10 h-auto w-full 
-                       bg-orange-200 flex flex-col justify-center rounded-3xl 
+                       bg-custom text-white flex flex-col justify-center rounded-3xl 
                        mb-10"
           >
             <h1 className="mb-3 sm:mb-4 text-lg sm:text-xl font-semibold">

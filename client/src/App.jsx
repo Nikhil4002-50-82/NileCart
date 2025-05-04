@@ -7,6 +7,7 @@ import Home from "./components/HomePage/Home";
 import ProductDetails from "./components/IndividualProduct/ProductDetails";
 import Cart from "./components/IndividualProduct/Cart";
 import ScrollToTop from "./ScrollToTop";
+import SignIn from "./components/Login/SignIn";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/signIn" element={<SignIn />} />
         </Routes>
         <Footer />
       </BrowserRouter>

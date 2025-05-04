@@ -18,7 +18,7 @@ const Card = ({ src, title, price, onClick }) => {
           <p className="text-sm sm:text-base md:text-lg text-green-600 font-semibold">
             In Stock
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-red-600 font-semibold">
+          <p className="text-sm sm:text-base md:text-lg text-custom font-semibold">
             ₹{price}
           </p>
         </div>
