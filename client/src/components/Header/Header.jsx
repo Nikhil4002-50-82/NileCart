@@ -15,7 +15,7 @@ const Header = () => {
                      lg:shadow-orange-100"
         >
           <div
-            className="bg-custom h-10 sm:h-12  md:h-8 flex items-center 
+            className="bg-custom h-12  md:h-8 flex items-center 
                        justify-center px-4 sm:px-6 md:px-8"
           >
             <p className="text-white text-xs sm:text-sm text-center">
@@ -55,7 +55,7 @@ const Header = () => {
                     navigate("/cart");
                   }}
                 >
-                  <CiShoppingCart className="text-xl sm:text-2xl" />
+                  <CiShoppingCart className="text-2xl " />
                   <div
                     className="w-4 h-4 bg-custom text-white 
                                font-semibold rounded-3xl absolute -top-1 -right-1 
