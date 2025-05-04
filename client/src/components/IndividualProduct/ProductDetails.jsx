@@ -187,7 +187,7 @@ const ProductDetails = () => {
             <h1 className="font-semibold text-base sm:text-lg mb-2">
               RELATED PRODUCTS
             </h1>
-            <div className="flex flex-wrap gap-8 mb-6">
+            <div className="flex gap-8 lg:flex-wrap w-full overflow-x-auto scrollbar-hide lg:gap-5 mb-8">
               {relatedData.length > 0 && relatedData.map(createCards)}
             </div>
           </div>

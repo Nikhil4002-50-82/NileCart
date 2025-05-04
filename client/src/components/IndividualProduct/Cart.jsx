@@ -112,9 +112,9 @@ const Cart = () => {
                 <div className="text-sm md:text-md">Shipping</div>
                 <div
                   className="flex justify-end items-center font-semibold 
-                           text-sm sm:text-md"
+                           text-sm sm:text-md text-green-600"
                 >
-                  Free
+                   ₹25
                 </div>
                 <div className="text-sm md:text-md">Estimate For</div>
                 <div
@@ -126,7 +126,7 @@ const Cart = () => {
                 <div className="text-sm md:text-md">Total</div>
                 <div
                   className="text-red-custom font-semibold text-sm sm:text-md 
-                           flex justify-end items-center"
+                           flex justify-end items-center text-custom"
                 >
                   ₹{data[0].price * count + 25}
                 </div>
