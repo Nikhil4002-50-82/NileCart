@@ -8,6 +8,7 @@ import ProductDetails from "./components/IndividualProduct/ProductDetails";
 import Cart from "./components/IndividualProduct/Cart";
 import ScrollToTop from "./ScrollToTop";
 import SignIn from "./components/Login/SignIn";
+import SignUp from "./components/Login/SignUp";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
         </Routes>
         <Footer />
       </BrowserRouter>

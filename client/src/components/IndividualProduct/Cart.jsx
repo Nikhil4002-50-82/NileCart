@@ -40,7 +40,7 @@ const Cart = () => {
       <div className="px-6 md:px-16">
         <h1 className="text-base sm:text-lg font-semibold">YOUR CART</h1>
         <p className="text-sm sm:text-md text-gray-700 mb-3 sm:mb-4">
-          There are <span className="text-red-600 font-semibold">21</span>{" "}
+          There are <span className="text-custom font-semibold">21</span>{" "}
           products in your cart
         </p>
       </div>
@@ -104,7 +104,7 @@ const Cart = () => {
               >
                 <div className="text-sm md:text-md">Subtotal</div>
                 <div
-                  className="text-red-600 font-semibold text-sm sm:text-md 
+                  className="text-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center"
                 >
                   ₹{data[0].price * count}
@@ -125,7 +125,7 @@ const Cart = () => {
                 </div>
                 <div className="text-sm md:text-md">Total</div>
                 <div
-                  className="text-red-600 font-semibold text-sm sm:text-md 
+                  className="text-red-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center"
                 >
                   ₹{data[0].price * count + 25}

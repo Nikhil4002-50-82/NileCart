@@ -15,12 +15,12 @@ const Header = () => {
                      lg:shadow-orange-100"
         >
           <div
-            className="bg-custom h-10 sm:h-12 md:h-8 flex items-center 
+            className="bg-custom h-10 sm:h-12  md:h-8 flex items-center 
                        justify-center px-4 sm:px-6 md:px-8"
           >
             <p className="text-white text-xs sm:text-sm text-center">
               Due to the{" "}
-              <span className="text-sm sm:text-md font-semibold">TESTING</span>{" "}
+              <span className="text-md font-semibold">TESTING</span>{" "}
               phase, orders may be processed with a slight delay
             </p>
           </div>
@@ -39,16 +39,16 @@ const Header = () => {
                     navigate("/");
                   }}
                 >
-                  <FaCartArrowDown className="text-2xl sm:text-3xl md:text-4xl" />
+                  <FaCartArrowDown className="text-3xl  md:text-4xl" />
                   <p
-                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl 
+                    className="text-xl md:text-2xl lg:text-3xl 
                                font-bold text-black ml-1"
                   >
                     NileCart
                   </p>
                 </div>
                 <div
-                  className="h-8 sm:h-10 w-8 sm:w-10 rounded-3xl bg-orange-200 
+                  className="h-10 w-10 rounded-3xl bg-orange-200 
                              relative flex items-center justify-center sm:hidden 
                              cursor-pointer"
                   onClick={() => {
@@ -57,7 +57,7 @@ const Header = () => {
                 >
                   <CiShoppingCart className="text-xl sm:text-2xl" />
                   <div
-                    className="w-3 sm:w-4 h-3 sm:h-4 bg-custom text-white 
+                    className="w-4 h-4 bg-custom text-white 
                                font-semibold rounded-3xl absolute -top-1 -right-1 
                                flex items-center justify-center text-[0.6rem] sm:text-xs"
                   >
@@ -70,7 +70,7 @@ const Header = () => {
                            w-full sm:w-auto sm:items-center"
               >
                 <div
-                  className="h-[2.5em] sm:h-[3em] md:h-[3.5em] w-full sm:w-[9em] 
+                  className="h-[3em] sm:h-[3em] md:h-[3.5em] w-full sm:w-[9em] 
                              md:w-[10em] lg:w-[11em] border-2 border-gray-400 
                              rounded-lg flex flex-col justify-center p-2 sm:p-3 md:p-4"
                 >
@@ -102,7 +102,7 @@ const Header = () => {
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 <button
                   className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
-                             lg:w-[7em] h-8 sm:h-10 md:h-12 rounded-3xl 
+                             lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
                              onClick={()=>{

@@ -73,7 +73,9 @@ const SignIn = () => {
           className="text-sm sm:text-base"
         >
           Not Registered?{" "}
-          <span className="text-custom font-semibold">Sign Up</span>
+          <span className="text-custom font-semibold cursor-pointer" onClick={()=>{
+            navigate("/signUp")
+          }}>Sign Up</span>
         </p>
       </div>
     </div>
