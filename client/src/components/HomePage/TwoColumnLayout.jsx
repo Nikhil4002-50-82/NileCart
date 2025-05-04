@@ -79,7 +79,7 @@ const TwoColumnLayout = () => {
             </div>
             <div>h</div>
           </div>
-          <div className="grid grid-cols-2 w-full md:flex md:flex-wrap gap-5">
+          <div className="flex gap-8 lg:flex-wrap w-full overflow-x-auto scrollbar-hide lg:gap-5">
             {data.length > 0 && data.map(createCards)}
           </div>
         </div>
