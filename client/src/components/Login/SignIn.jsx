@@ -7,7 +7,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   return (
     <div
-      className="bg-cover bg-center h-auto pb-10 sm:pb-8 md:pb-6 w-full 
+      className="bg-cover bg-center h-auto pb-4 sm:pb-6 md:pb-6 w-full 
                  flex items-center justify-center"
     >
       <div
