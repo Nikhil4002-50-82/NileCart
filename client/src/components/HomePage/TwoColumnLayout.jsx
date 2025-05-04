@@ -79,6 +79,12 @@ const TwoColumnLayout = () => {
             </div>
             <div>h</div>
           </div>
+          <div className="md:hidden">
+              <h1 className="font-semibold text-base sm:text-lg mb-2">POPULAR PRODUCTS</h1>
+              <p className="text-sm text-gray-500 mb-4">
+                Do not miss the current offers until the end of March.
+              </p>
+            </div>
           <div className="flex gap-8 lg:flex-wrap w-full overflow-x-auto scrollbar-hide lg:gap-5">
             {data.length > 0 && data.map(createCards)}
           </div>
