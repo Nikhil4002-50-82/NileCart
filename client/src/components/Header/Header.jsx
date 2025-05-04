@@ -1,11 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CiSearch, CiShoppingCart } from "react-icons/ci";
 import { FaCartArrowDown } from "react-icons/fa6";
 
+import { SignInContext } from "../../context/SignInContext";
+
 const Header = () => {
   const navigate = useNavigate();
+
+  const {loggedIn,setLoggedIn}=useContext(SignInContext);
 
   return (
     <div className="relative">
@@ -100,7 +104,13 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                <button
+                {loggedIn?<button className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
+                             lg:w-[7em] h-10 md:h-12 rounded-3xl 
+                             font-semibold flex items-center justify-center 
+                             text-xs sm:text-sm md:text-base"
+                             onClick={()=>{
+                              setLoggedIn(false)
+                             }}>Log Out</button>:<button
                   className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
@@ -110,7 +120,7 @@ const Header = () => {
                              }}
                 >
                   Sign In
-                </button>
+                </button>}
                 <div
                   className="hidden sm:flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 
                              md:w-12 rounded-3xl bg-orange-200 relative 

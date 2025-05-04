@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FaCartArrowDown } from "react-icons/fa6";
 
+import { SignInContext } from "../../context/SignInContext";
+
 const SignIn = () => {
   const navigate = useNavigate();
+  const { loggedIn, setLoggedIn } = useContext(SignInContext);
+  const [userName, setUserName] = useState("nikhil");
+  const [password, setPassword] = useState("nikhil");
+  let user = "";
+  let pass = "";
   return (
     <div
       className="bg-cover bg-center h-auto pb-4 sm:pb-6 md:pb-6 w-full 
@@ -21,9 +28,7 @@ const SignIn = () => {
             navigate("/");
           }}
         >
-          <FaCartArrowDown
-            className="text-2xl sm:text-3xl md:text-4xl"
-          />
+          <FaCartArrowDown className="text-2xl sm:text-3xl md:text-4xl" />
           <p
             className="text-xl sm:text-2xl md:text-3xl font-semibold text-black 
                        ml-1 sm:ml-2"
@@ -31,24 +36,26 @@ const SignIn = () => {
             NileCart
           </p>
         </div>
-        <p
-          className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
-        >
-          Sign In
-        </p>
+        <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Sign In</p>
         <input
           type="text"
           placeholder="UserName*"
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
+          onChange={(event) => {
+            user = event.target.value;
+          }}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password*"
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
+          onChange={(event) => {
+            pass = event.target.value;
+          }}
         />
         <div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 px-2 sm:px-3 
@@ -58,6 +65,12 @@ const SignIn = () => {
             className="h-[2.5em] sm:h-[3em] w-full sm:w-[10em] md:w-[12em] 
                        bg-custom text-white font-semibold rounded-lg 
                        text-sm sm:text-base"
+            onClick={() => {
+              if (userName == user && password == pass) {
+                setLoggedIn(true);
+                navigate("/");
+              }
+            }}
           >
             Sign In
           </button>
@@ -69,13 +82,16 @@ const SignIn = () => {
             Cancel
           </button>
         </div>
-        <p
-          className="text-sm sm:text-base"
-        >
+        <p className="text-sm sm:text-base">
           Not Registered?{" "}
-          <span className="text-custom font-semibold cursor-pointer" onClick={()=>{
-            navigate("/signUp")
-          }}>Sign Up</span>
+          <span
+            className="text-custom font-semibold cursor-pointer"
+            onClick={() => {
+              navigate("/signUp");
+            }}
+          >
+            Sign Up
+          </span>
         </p>
       </div>
     </div>
