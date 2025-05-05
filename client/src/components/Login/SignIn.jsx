@@ -9,7 +9,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
   const [userName, setUserName] = useState("nikhil");
-  const [password, setPassword] = useState("nikhil");
+  const [password, setPassword] = useState("varshini");
   let user = "";
   let pass = "";
   return (
