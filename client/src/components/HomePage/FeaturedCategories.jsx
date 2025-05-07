@@ -7,7 +7,7 @@ const FeaturedCategories = () => {
       <h1 className="font-semibold text-base sm:text-lg mb-2">
         FEATURED CATEGORIES
       </h1>
-      <div className="flex overflow-x-auto scrollbar-hide lg:overflow-visible lg:grid-cols-8 gap-4 sm:gap-3">
+      <div className="flex overflow-x-auto scrollbar-hide lg:grid lg:grid-cols-8 gap-4 sm:gap-3">
         <FeaturedCategoriesComponent
           name="Fashion"
           bg="#E6E6FA"

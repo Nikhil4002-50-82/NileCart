@@ -1,15 +1,17 @@
-import React, { useRef,useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CiSearch, CiShoppingCart } from "react-icons/ci";
 import { FaCartArrowDown } from "react-icons/fa6";
 
 import { SignInContext } from "../../context/SignInContext";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const Header = () => {
   const navigate = useNavigate();
 
-  const {loggedIn,setLoggedIn}=useContext(SignInContext);
+  const { loggedIn, setLoggedIn } = useContext(SignInContext);
+  const {userData,setUserData}=useContext(UserDataContext);
 
   return (
     <div className="relative">
@@ -23,14 +25,13 @@ const Header = () => {
                        justify-center px-4 sm:px-6 md:px-8"
           >
             <p className="text-white text-xs sm:text-sm text-center">
-              Due to the{" "}
-              <span className="text-md font-semibold">TESTING</span>{" "}
+              Due to the <span className="text-md font-semibold">TESTING</span>{" "}
               phase, orders may be processed with a slight delay
             </p>
           </div>
           <div className="py-2 sm:py-3 md:py-4">
             <div
-              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-evenly gap-2 sm:gap-3 
                          md:gap-4 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-24 2xl:px-28"
             >
               <div
@@ -71,7 +72,7 @@ const Header = () => {
               </div>
               <div
                 className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 
-                           w-full sm:w-auto sm:items-center"
+                           w-full sm:w-auto sm:items-center md:justify-evenly"
               >
                 <div
                   className="h-[3em] sm:h-[3em] md:h-[3.5em] w-full sm:w-[9em] 
@@ -90,7 +91,7 @@ const Header = () => {
                 </div>
                 <div
                   className="bg-gray-200 w-full sm:w-[16em] md:w-[20em] 
-                             lg:w-[24em] xl:w-[28em] 2xl:w-[32em] rounded-lg 
+                             lg:w-[24em] xl:w-[26em] 2xl:w-[32em] rounded-lg 
                              flex items-center justify-center"
                 >
                   <input
@@ -98,29 +99,41 @@ const Header = () => {
                     placeholder="Search for products..."
                     className="h-[3.5em]  md:h-[3.5em] p-2 sm:p-3 md:p-4 
                                bg-gray-200 w-[90%] focus:outline-none 
-                               text-sm"
+                               text-sm rounded-lg"
                   />
                   <CiSearch className="text-xl md:text-2xl lg:text-3xl" />
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                {loggedIn?<button className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
+                {loggedIn ? (
+                  <div className="flex items-center justify-between gap-4 md:justify-center">
+                    <p className="text-sm font-semibold">{userData.name}</p>
+                    <button
+                    className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
-                             onClick={()=>{
-                              setLoggedIn(false)
-                             }}>Log Out</button>:<button
-                  className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
+                    onClick={() => {
+                      setLoggedIn(false);
+                      navigate("/signIn");
+                    }}
+                  >
+                    Log Out
+                  </button>
+                  </div>
+                ) : (
+                  <button
+                    className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
-                             onClick={()=>{
-                              navigate("/signIn")
-                             }}
-                >
-                  Sign In
-                </button>}
+                    onClick={() => {
+                      navigate("/signIn");
+                    }}
+                  >
+                    Sign In
+                  </button>
+                )}
                 <div
                   className="hidden sm:flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 
                              md:w-12 rounded-3xl bg-orange-200 relative 

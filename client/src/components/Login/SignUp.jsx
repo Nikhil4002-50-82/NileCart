@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { FaCartArrowDown } from "react-icons/fa6";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const AddNewUser = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/addUser", {
+        name: name,
+        phoneno: phoneNo,
+        username: userName,
+        password: password,
+      });
+      alert("User created successfully!!");
+      navigate("/signIn")
+    } catch (error) {
+      console.log(`error message : ${error.message}`);
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <div
@@ -21,9 +43,7 @@ const SignUp = () => {
             navigate("/");
           }}
         >
-          <FaCartArrowDown
-            className="text-2xl sm:text-3xl md:text-4xl"
-          />
+          <FaCartArrowDown className="text-2xl sm:text-3xl md:text-4xl" />
           <p
             className="text-xl sm:text-2xl md:text-3xl font-semibold text-black 
                        ml-1 sm:ml-2"
@@ -31,20 +51,19 @@ const SignUp = () => {
             NileCart
           </p>
         </div>
-        <p
-          className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
-        >
-          Sign Up
-        </p>
-        <div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8"
-        >
+        <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Sign Up</p>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
           <input
             type="text"
             placeholder="Name"
             className="focus:outline-none border-b-2 border-orange-300 mb-4 sm:mb-0
                        h-[2em] sm:h-[2.5em] bg-orange-100 w-full p-1 sm:p-2 
                        text-sm sm:text-base"
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            value={name}
+            required
           />
           <input
             type="text"
@@ -52,6 +71,11 @@ const SignUp = () => {
             className="focus:outline-none border-b-2 border-orange-300 
                        h-[2em] sm:h-[2.5em] bg-orange-100 w-full p-1 sm:p-2 
                        text-sm sm:text-base"
+            onChange={(event) => {
+              setPhoneNo(event.target.value);
+            }}
+            value={phoneNo}
+            required
           />
         </div>
         <input
@@ -60,6 +84,11 @@ const SignUp = () => {
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
+          onChange={(event) => {
+            setUserName(event.target.value);
+          }}
+          value={userName}
+          required
         />
         <input
           type="password"
@@ -67,6 +96,11 @@ const SignUp = () => {
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          value={password}
+          required
         />
         <input
           type="password"
@@ -74,6 +108,11 @@ const SignUp = () => {
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+          }}
+          value={confirmPassword}
+          required
         />
         <div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 px-2 sm:px-3 
@@ -83,6 +122,13 @@ const SignUp = () => {
             className="h-[2.5em] sm:h-[3em] w-full sm:w-[10em] md:w-[12em] 
                        bg-custom text-white font-semibold rounded-lg 
                        text-sm sm:text-base"
+            onClick={() => {
+              if (password === confirmPassword) AddNewUser();
+              else {
+                setPassword("");
+                setConfirmPassword("");
+              }
+            }}
           >
             Sign Up
           </button>
@@ -94,9 +140,7 @@ const SignUp = () => {
             Cancel
           </button>
         </div>
-        <p
-          className="text-sm sm:text-base"
-        >
+        <p className="text-sm sm:text-base">
           Already Registered?{" "}
           <span
             className="text-custom font-semibold cursor-pointer"

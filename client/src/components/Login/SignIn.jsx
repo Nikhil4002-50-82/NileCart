@@ -1,17 +1,38 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { FaCartArrowDown } from "react-icons/fa6";
 
 import { SignInContext } from "../../context/SignInContext";
+import { UserDataContext } from "../../context/UserDataContext";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
-  const [userName, setUserName] = useState("nikhil");
-  const [password, setPassword] = useState("varshini");
-  let user = "";
-  let pass = "";
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const {userData, setUserData} = useContext(UserDataContext);
+
+  const VerifyUserForLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/userLogin", {
+        username: userName,
+        password: password,
+      });
+      alert(response.data.message);
+      if (response.data.user) {
+        setUserData(response.data.user[0]);
+        setLoggedIn(true);
+        navigate("/");
+      } else {
+        setPassword("");
+      }
+    } catch (error) {
+      console.log(`error message : ${error.message}`);
+    }
+  };
+
   return (
     <div
       className="bg-cover bg-center h-auto pb-4 sm:pb-6 md:pb-6 w-full 
@@ -39,13 +60,14 @@ const SignIn = () => {
         <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">Sign In</p>
         <input
           type="text"
-          placeholder="UserName*"
+          placeholder="Username*"
           className="focus:outline-none border-b-2 border-orange-300 
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
           onChange={(event) => {
-            user = event.target.value;
+            setUserName(event.target.value);
           }}
+          value={userName}
         />
         <input
           type="password"
@@ -54,8 +76,9 @@ const SignIn = () => {
                      mb-6 sm:mb-8 h-[2em] sm:h-[2.5em] bg-orange-100 w-full 
                      p-1 sm:p-2 text-sm sm:text-base"
           onChange={(event) => {
-            pass = event.target.value;
+            setPassword(event.target.value);
           }}
+          value={password}
         />
         <div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 px-2 sm:px-3 
@@ -66,10 +89,7 @@ const SignIn = () => {
                        bg-custom text-white font-semibold rounded-lg 
                        text-sm sm:text-base"
             onClick={() => {
-              if (userName == user && password == pass) {
-                setLoggedIn(true);
-                navigate("/");
-              }
+              VerifyUserForLogin();
             }}
           >
             Sign In

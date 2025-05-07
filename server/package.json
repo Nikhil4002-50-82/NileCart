@@ -12,10 +12,12 @@
   "description": "",
   "dependencies": {
     "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.10",
-    "pg": "^8.15.6"
+    "pg": "^8.15.6",
+    "postgres-pool": "^10.1.3"
   }
 }

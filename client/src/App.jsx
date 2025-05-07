@@ -11,25 +11,29 @@ import SignIn from "./components/Login/SignIn";
 import SignUp from "./components/Login/SignUp";
 
 import { SignInContext } from "./context/SignInContext";
+import { UserDataContext } from "./context/UserDataContext";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
   return (
     <div>
-      <SignInContext.Provider value={{ loggedIn, setLoggedIn }}>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/productDetails/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/signUp" element={<SignUp />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </SignInContext.Provider>
+      <UserDataContext.Provider value={{ userData, setUserData }}>
+        <SignInContext.Provider value={{ loggedIn, setLoggedIn }}>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/productDetails/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </SignInContext.Provider>
+      </UserDataContext.Provider>
     </div>
   );
 };
