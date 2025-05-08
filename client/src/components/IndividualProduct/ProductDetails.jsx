@@ -16,12 +16,13 @@ const ProductDetails = () => {
   const [data, setData] = useState(null);
   const [relatedData, setRelatedData] = useState([]);
   const [count, setCount] = useState(1);
-  const [addToCartBtn, setAddToCartBtn] = useState(false);
 
   const getIndividualData = async () => {
     try {
-      const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-      setData(response.data);
+      const response = await axios.get(
+        `http://localhost:3000/getProductById/${id}`
+      );
+      setData(response.data[0]);
     } catch (error) {
       console.log(`error message: ${error.message}`);
     }
@@ -29,7 +30,9 @@ const ProductDetails = () => {
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      const response = await axios.get(
+        "http://localhost:3000/getDataFromProducts"
+      );
       setRelatedData(
         response.data.filter((obj) => obj.category === data.category)
       );
@@ -38,26 +41,15 @@ const ProductDetails = () => {
     }
   };
 
-  // const addToCart = async () => {
-  //   const cart = { products: [{ id: id, count: count }] };
-  //   try {
-  //     const response = await axios.post("https://fakestoreapi.com/carts", cart);
-  //   } catch (error) {
-  //     console.log(`error message:${error.message}`);
-  //   } finally {
-  //     setAddToCartBtn(false);
-  //   }
-  // };
-
   const createCards = (obj) => {
     return (
       <Card
-        key={obj.id}
+        key={obj.productid}
         src={obj.image}
         title={obj.title}
         price={obj.price}
         onClick={() => {
-          navigate(`/productDetails/${obj.id}`);
+          navigate(`/productDetails/${obj.productid}`);
         }}
       />
     );
@@ -70,10 +62,6 @@ const ProductDetails = () => {
   useEffect(() => {
     if (data && data.category) getAllData();
   }, [data]);
-
-  // useEffect(() => {
-  //   if (addToCartBtn) addToCart();
-  // }, [addToCartBtn]);
 
   return (
     <div>
@@ -100,12 +88,8 @@ const ProductDetails = () => {
                 {data.title}
               </h1>
               <p className="text-sm sm:text-md font-semibold mb-4 sm:mb-6">
-                <span className="mr-4 text-gray-800">
-                  {data.rating.rate}⭐
-                </span>
-                <span className="text-gray-500">
-                  {data.rating.count} reviews
-                </span>
+                <span className="mr-4 text-gray-800">{data.rate}⭐</span>
+                <span className="text-gray-500">{data.count} reviews</span>
               </p>
               <p
                 className="text-custom font-semibold text-lg sm:text-xl 

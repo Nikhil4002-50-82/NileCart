@@ -1,8 +1,10 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CiSearch, CiShoppingCart } from "react-icons/ci";
+import { CiSearch, CiShoppingCart, CiLogout } from "react-icons/ci";
 import { FaCartArrowDown } from "react-icons/fa6";
+import { FaUser, FaPhoneAlt, FaUserCheck } from "react-icons/fa";
+import { IoReorderFourOutline } from "react-icons/io5";
 
 import { SignInContext } from "../../context/SignInContext";
 import { UserDataContext } from "../../context/UserDataContext";
@@ -11,7 +13,25 @@ const Header = () => {
   const navigate = useNavigate();
 
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
-  const {userData,setUserData}=useContext(UserDataContext);
+  const { userData, setUserData } = useContext(UserDataContext);
+
+  const [userBtn, setUserBtn] = useState(false);
+  const userDropdown = useRef();
+
+  const outsideClick = () => {
+    if (userDropdown.current && !userDropdown.current.contains(event.target)) {
+      setUserBtn(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", outsideClick);
+  }, []);
+
+  useEffect(() => {
+    if (userBtn) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+  }, [userBtn]);
 
   return (
     <div className="relative">
@@ -107,19 +127,61 @@ const Header = () => {
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 {loggedIn ? (
                   <div className="flex items-center justify-between gap-4 md:justify-center">
-                    <p className="text-sm font-semibold">{userData.name}</p>
-                    <button
-                    className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
+                    <div
+                      className="flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 
+                             md:w-12 rounded-3xl bg-orange-200 relative 
+                             items-center justify-center cursor-pointer"
+                      onClick={() => {
+                        setUserBtn(true);
+                      }}
+                    >
+                      <FaUser className="text-2xl" />
+                      {userBtn && (
+                        <div
+                          ref={userDropdown}
+                          className="absolute top-16 h-auto w-[15em] bg-white shadow-orange-200 shadow-xl"
+                        >
+                          <p className="text-xl font-semibold px-6 py-2 flex items-center">
+                            <FaUserCheck className="text-orange-500 mr-2" />
+                            <span>{userData.name}</span>
+                          </p>
+                          <p className="text-sm font-semibold flex items-center gap-2 px-6 py-2">
+                            <FaPhoneAlt />
+                            <span>{userData.phoneno}</span>
+                          </p>
+                          <hr className="w-full my-2 h-[0.1em] bg-orange-300" />
+                          <p className="flex items-center  px-6">
+                            <IoReorderFourOutline />
+                            <span>Orders</span>
+                          </p>
+                          <button
+                            className="w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
-                    onClick={() => {
-                      setLoggedIn(false);
-                      navigate("/signIn");
-                    }}
-                  >
-                    Log Out
-                  </button>
+                            onClick={() => {
+                              setLoggedIn(false);
+                              navigate("/signIn");
+                            }}
+                          >
+                            <CiLogout className="text-custom text-2xl" />
+                            <span>Log Out</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    {/* <button
+                      className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
+                             lg:w-[7em] h-10 md:h-12 rounded-3xl 
+                             font-semibold flex items-center justify-center 
+                             text-xs sm:text-sm md:text-base"
+                      onClick={() => {
+                        setLoggedIn(false);
+                        navigate("/signIn");
+                      }}
+                    >
+                      Log Out
+                    </button> */}
                   </div>
                 ) : (
                   <button
@@ -133,6 +195,11 @@ const Header = () => {
                   >
                     Sign In
                   </button>
+                )}
+                {loggedIn && (
+                  <div>
+                    <p className="text-md font-semibold"> ₹2000</p>
+                  </div>
                 )}
                 <div
                   className="hidden sm:flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 

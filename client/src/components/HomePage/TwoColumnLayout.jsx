@@ -15,7 +15,9 @@ const TwoColumnLayout = () => {
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      const response = await axios.get(
+        "http://localhost:3000/getDataFromProducts"
+      );
       setData(response.data);
     } catch (error) {
       console.log(`error message:${error.message}`);
@@ -46,12 +48,12 @@ const TwoColumnLayout = () => {
   const createCards = (obj) => {
     return (
       <Card
-        key={obj.id}
+        key={obj.productid}
         src={obj.image}
         title={obj.title}
         price={obj.price}
         onClick={() => {
-          navigate(`/productDetails/${obj.id}`);
+          navigate(`/productDetails/${obj.productid}`);
         }}
       />
     );
@@ -80,11 +82,13 @@ const TwoColumnLayout = () => {
             <div>h</div>
           </div>
           <div className="md:hidden">
-              <h1 className="font-semibold text-base sm:text-lg mb-2">POPULAR PRODUCTS</h1>
-              <p className="text-sm text-gray-500 mb-4">
-                Do not miss the current offers until the end of March.
-              </p>
-            </div>
+            <h1 className="font-semibold text-base sm:text-lg mb-2">
+              POPULAR PRODUCTS
+            </h1>
+            <p className="text-sm text-gray-500 mb-4">
+              Do not miss the current offers until the end of March.
+            </p>
+          </div>
           <div className="flex gap-8 lg:flex-wrap w-full overflow-x-auto scrollbar-hide lg:gap-5">
             {data.length > 0 && data.map(createCards)}
           </div>
