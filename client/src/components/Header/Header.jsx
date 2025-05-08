@@ -72,21 +72,28 @@ const Header = () => {
                     NileCart
                   </p>
                 </div>
-                <div
-                  className="h-10 w-10 rounded-3xl bg-orange-200 
+                <div className="flex items-center">
+                  {loggedIn && (
+                    <div className="md:hidden mr-1">
+                      <p className="text-md font-semibold"> ₹2000</p>
+                    </div>
+                  )}
+                  <div
+                    className="h-10 w-10 rounded-3xl bg-orange-200 
                              relative flex items-center justify-center sm:hidden 
                              cursor-pointer"
-                  onClick={() => {
-                    navigate("/cart");
-                  }}
-                >
-                  <CiShoppingCart className="text-2xl " />
-                  <div
-                    className="w-4 h-4 bg-custom text-white 
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
+                  >
+                    <CiShoppingCart className="text-2xl " />
+                    <div
+                      className="w-4 h-4 bg-custom text-white 
                                font-semibold rounded-3xl absolute -top-1 -right-1 
                                flex items-center justify-center text-[0.6rem] sm:text-xs"
-                  >
-                    21
+                    >
+                      21
+                    </div>
                   </div>
                 </div>
               </div>
@@ -126,62 +133,65 @@ const Header = () => {
               </div>
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 {loggedIn ? (
-                  <div className="flex items-center justify-between gap-4 md:justify-center">
-                    <div
-                      className="flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 
+                  <div className="w-full">
+                    <div className="flex items-center justify-between gap-4 md:justify-center">
+                      <div
+                        className="hidden md:flex h-8 sm:h-10 md:h-12 w-8 sm:w-10 
                              md:w-12 rounded-3xl bg-orange-200 relative 
                              items-center justify-center cursor-pointer"
-                      onClick={() => {
-                        setUserBtn(true);
-                      }}
-                    >
-                      <FaUser className="text-2xl" />
-                      {userBtn && (
-                        <div
-                          ref={userDropdown}
-                          className="absolute top-16 h-auto w-[15em] bg-white shadow-orange-200 shadow-xl"
-                        >
-                          <p className="text-xl font-semibold px-6 py-2 flex items-center">
-                            <FaUserCheck className="text-orange-500 mr-2" />
-                            <span>{userData.name}</span>
-                          </p>
-                          <p className="text-sm font-semibold flex items-center gap-2 px-6 py-2">
-                            <FaPhoneAlt />
-                            <span>{userData.phoneno}</span>
-                          </p>
-                          <hr className="w-full my-2 h-[0.1em] bg-orange-300" />
-                          <p className="flex items-center  px-6">
-                            <IoReorderFourOutline />
-                            <span>Orders</span>
-                          </p>
-                          <button
-                            className="w-full sm:w-[5em] md:w-[6em] 
+                        onClick={() => {
+                          setUserBtn(true);
+                        }}
+                      >
+                        <FaUser className="text-2xl" />
+                        {userBtn && (
+                          <div
+                            ref={userDropdown}
+                            className="absolute top-20 left-0 h-auto w-[16em] bg-orange-50 text-custom shadow-custom shadow-2xl rounded-lg"
+                          >
+                            <p className="text-xl font-semibold px-6 py-2 flex items-center">
+                              <FaUserCheck className="text-orange-200 bg-custom rounded-full h-7 w-7 p-1 mr-2" />
+                              <span>{userData.name}</span>
+                            </p>
+                            <p className="text-sm font-semibold flex items-center gap-2 px-6 py-2">
+                              <FaPhoneAlt />
+                              <span>{userData.phoneno}</span>
+                            </p>
+                            <hr className="w-full my-2 h-[0.1em] bg-custom" />
+                            <p className="flex items-center  px-6">
+                              <IoReorderFourOutline />
+                              <span>Orders</span>
+                            </p>
+                            <button
+                              className="w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
-                            onClick={() => {
-                              setLoggedIn(false);
-                              navigate("/signIn");
-                            }}
-                          >
-                            <CiLogout className="text-custom text-2xl" />
-                            <span>Log Out</span>
-                          </button>
-                        </div>
-                      )}
+                              onClick={() => {
+                                setLoggedIn(false);
+                                setUserBtn(false);
+                                navigate("/signIn");
+                              }}
+                            >
+                              <CiLogout className="text-custom text-2xl" />
+                              <span>Log Out</span>
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    {/* <button
+                    <button
                       className="bg-custom text-white w-full sm:w-[5em] md:w-[6em] 
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
-                             text-xs sm:text-sm md:text-base"
+                             text-xs sm:text-sm md:text-base md:hidden"
                       onClick={() => {
                         setLoggedIn(false);
                         navigate("/signIn");
                       }}
                     >
                       Log Out
-                    </button> */}
+                    </button>
                   </div>
                 ) : (
                   <button
@@ -196,8 +206,10 @@ const Header = () => {
                     Sign In
                   </button>
                 )}
+              </div>
+              <div className="flex items-center">
                 {loggedIn && (
-                  <div>
+                  <div className="mr-2 hidden md:block">
                     <p className="text-md font-semibold"> ₹2000</p>
                   </div>
                 )}

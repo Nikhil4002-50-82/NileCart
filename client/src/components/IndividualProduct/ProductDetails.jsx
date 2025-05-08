@@ -34,7 +34,10 @@ const ProductDetails = () => {
         "http://localhost:3000/getDataFromProducts"
       );
       setRelatedData(
-        response.data.filter((obj) => obj.category === data.category)
+        response.data.filter(
+          (obj) =>
+            obj.category === data.category && obj.productid != data.productid
+        )
       );
     } catch (error) {
       console.log(`error message:${error.message}`);
@@ -75,7 +78,7 @@ const ProductDetails = () => {
               <img
                 src={data.image}
                 alt={data.title}
-                className="h-full w-full 
+                className="h-full w-full
                            border-[0.1em] border-orange-100 shadow-2xl 
                            shadow-orange-400 rounded-2xl object-cover"
               />
