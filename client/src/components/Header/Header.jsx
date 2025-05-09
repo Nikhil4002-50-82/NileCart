@@ -9,13 +9,15 @@ import { IoReorderFourOutline } from "react-icons/io5";
 import { SignInContext } from "../../context/SignInContext";
 import { UserDataContext } from "../../context/UserDataContext";
 import { TotalCostContext } from "../../context/TotalCostContext";
+import { CartCountContext } from "../../context/CartCountContext";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
   const { userData, setUserData } = useContext(UserDataContext);
-  const {totalCost,setTotalCost}=useContext(TotalCostContext);
+  const { totalCost, setTotalCost } = useContext(TotalCostContext);
+  const { productsCount, setProductsCount } = useContext(CartCountContext);
 
   const [userBtn, setUserBtn] = useState(false);
   const userDropdown = useRef();
@@ -30,10 +32,10 @@ const Header = () => {
     document.addEventListener("mousedown", outsideClick);
   }, []);
 
-  useEffect(() => {
-    if (userBtn) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
-  }, [userBtn]);
+  // useEffect(() => {
+  //   if (userBtn) document.body.style.overflow = "hidden";
+  //   else document.body.style.overflow = "auto";
+  // }, [userBtn]);
 
   return (
     <div className="relative">
@@ -94,7 +96,7 @@ const Header = () => {
                                font-semibold rounded-3xl absolute -top-1 -right-1 
                                flex items-center justify-center text-[0.6rem] sm:text-xs"
                     >
-                      21
+                      {productsCount?productsCount:0}
                     </div>
                   </div>
                 </div>
@@ -149,7 +151,7 @@ const Header = () => {
                         {userBtn && (
                           <div
                             ref={userDropdown}
-                            className="absolute top-20 left-0 h-auto w-[16em] bg-orange-100 text-black shadow-orange-200 shadow-2xl rounded-lg"
+                            className="absolute top-20 left-0 h-auto w-[16em] bg-orange-100 text-black shadow-gray-400 shadow-2xl rounded-lg"
                           >
                             <p className="text-xl font-semibold px-6 py-2 flex items-center">
                               <FaUserCheck className="text-orange-200 bg-custom rounded-full h-7 w-7 p-1 mr-2" />
@@ -169,9 +171,9 @@ const Header = () => {
                              lg:w-[7em] h-10 md:h-12 rounded-3xl 
                              font-semibold flex items-center justify-center 
                              text-xs sm:text-sm md:text-base"
-                              onClick={() => {
-                                setLoggedIn(false);
+                              onClick={async () => {
                                 setUserBtn(false);
+                                setLoggedIn(false);
                                 navigate("/signIn");
                               }}
                             >
@@ -212,7 +214,10 @@ const Header = () => {
               <div className="flex items-center">
                 {loggedIn && (
                   <div className="mr-2 hidden md:block">
-                    <p className="text-md font-semibold"> ₹{totalCost?totalCost:0}</p>
+                    <p className="text-md font-semibold">
+                      {" "}
+                      ₹{totalCost ? totalCost : 0}
+                    </p>
                   </div>
                 )}
                 <div
@@ -230,7 +235,7 @@ const Header = () => {
                                -top-1 -right-1 flex items-center justify-center 
                                text-[0.6rem] sm:text-xs"
                   >
-                    21
+                    {productsCount?productsCount:0}
                   </div>
                 </div>
               </div>

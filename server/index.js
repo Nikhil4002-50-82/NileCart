@@ -118,7 +118,10 @@ app.get("/getCartTotal",async(req,res)=>{
       const price=parseFloat(i.price);
       totalCost+=i.quantity*price;
     })
-    res.json(totalCost)
+    res.json({
+      totalCost:totalCost,
+      totalCount:response.rows.length
+    })
   }
   catch(error){
     console.log(`error message : ${error.message}`);

@@ -16,25 +16,25 @@ const ProductDetails = () => {
 
   const { id } = useParams();
 
-  const {loggedIn, setLoggedIn} = useContext(SignInContext);
-  const {userData,setUserData}=useContext(UserDataContext);
+  const { loggedIn, setLoggedIn } = useContext(SignInContext);
+  const { userData, setUserData } = useContext(UserDataContext);
 
   const [data, setData] = useState(null);
   const [relatedData, setRelatedData] = useState([]);
   const [count, setCount] = useState(1);
 
-  const AddToCart=async()=>{
-    try{
-      await axios.post("http://localhost:3000/addToCart",{
-        userid:userData.id,
-        productid:id,
-        quantity:count
-      })
-    }
-    catch(error){
+  const AddToCart = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/addToCart", {
+        userid: userData.id,
+        productid: id,
+        quantity: count,
+      });
+      alert(response.data.message);
+    } catch (error) {
       console.log(`error message : ${error.message}`);
     }
-  }
+  };
 
   const getIndividualData = async () => {
     try {
@@ -160,7 +160,7 @@ const ProductDetails = () => {
                              text-white font-semibold text-base sm:text-lg 
                              p-4 sm:p-6 flex items-center justify-between"
                   onClick={() => {
-                    if(loggedIn)AddToCart();
+                    if (loggedIn) AddToCart();
                   }}
                 >
                   <span>

@@ -9,6 +9,7 @@ import SignIn from "../Login/SignIn";
 import { SignInContext } from "../../context/SignInContext";
 import { UserDataContext } from "../../context/UserDataContext";
 import { TotalCostContext } from "../../context/TotalCostContext";
+import { CartCountContext } from "../../context/CartCountContext";
 
 const Cart = () => {
   const [data, setData] = useState([]);
@@ -17,6 +18,7 @@ const Cart = () => {
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
   const { userData, setUserData } = useContext(UserDataContext);
   const { totalCost, setTotalCost } = useContext(TotalCostContext);
+  const { productsCount, setProductsCount } = useContext(CartCountContext);
 
   const getTotalCost = async () => {
     try {
@@ -25,7 +27,8 @@ const Cart = () => {
           userid: userData.id,
         },
       });
-      setTotalCost(response.data);
+      setTotalCost(response.data.totalCost);
+      setProductsCount(response.data.totalCount);
     } catch (error) {
       console.log(`error message : ${error.message}`);
     }
@@ -53,6 +56,7 @@ const Cart = () => {
     return (
       <CartProducts
         key={obj.id}
+        productid={obj.productid}
         src={obj.image}
         title={obj.title}
         price={obj.price}
@@ -69,7 +73,7 @@ const Cart = () => {
           <div className="px-6 md:px-16">
             <h1 className="text-base sm:text-lg font-semibold">YOUR CART</h1>
             <p className="text-sm sm:text-md text-gray-700 mb-3 sm:mb-4">
-              There are <span className="text-custom font-semibold">21</span>{" "}
+              There are <span className="text-custom font-semibold">{productsCount}</span>{" "}
               products in your cart
             </p>
           </div>
@@ -159,7 +163,7 @@ const Cart = () => {
                       className="text-red-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center text-custom"
                     >
-                      ₹{totalCost ? totalCost+25 : 0}
+                      ₹{totalCost ? totalCost + 25 : 0}
                     </div>
                   </div>
                 )}

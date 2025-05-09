@@ -13,14 +13,16 @@ import SignUp from "./components/Login/SignUp";
 import { SignInContext } from "./context/SignInContext";
 import { UserDataContext } from "./context/UserDataContext";
 import { TotalCostContext } from "./context/TotalCostContext";
+import { CartCountContext } from "./context/CartCountContext";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
   const [totalCost, setTotalCost] = useState(0);
-
+  const [productsCount,setProductsCount]=useState(0);
   return (
     <div>
+      <CartCountContext.Provider value={{productsCount,setProductsCount}}>
       <TotalCostContext.Provider value={{ totalCost, setTotalCost }}>
         <UserDataContext.Provider value={{ userData, setUserData }}>
           <SignInContext.Provider value={{ loggedIn, setLoggedIn }}>
@@ -42,6 +44,7 @@ const App = () => {
           </SignInContext.Provider>
         </UserDataContext.Provider>
       </TotalCostContext.Provider>
+      </CartCountContext.Provider>
     </div>
   );
 };
