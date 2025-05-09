@@ -4,19 +4,40 @@ import axios from "axios";
 import { CiShoppingCart } from "react-icons/ci";
 
 import CartProducts from "./CartProducts";
+import SignIn from "../Login/SignIn";
 
 import { SignInContext } from "../../context/SignInContext";
-import SignIn from "../Login/SignIn";
+import { UserDataContext } from "../../context/UserDataContext";
+import { TotalCostContext } from "../../context/TotalCostContext";
 
 const Cart = () => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
 
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
+  const { userData, setUserData } = useContext(UserDataContext);
+  const { totalCost, setTotalCost } = useContext(TotalCostContext);
+
+  const getTotalCost = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/getCartTotal/", {
+        params: {
+          userid: userData.id,
+        },
+      });
+      setTotalCost(response.data);
+    } catch (error) {
+      console.log(`error message : ${error.message}`);
+    }
+  };
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      const response = await axios.get("http://localhost:3000/getCartItems", {
+        params: {
+          userid: userData.id,
+        },
+      });
       setData(response.data);
     } catch (error) {
       console.log(`error message: ${error.message}`);
@@ -25,6 +46,7 @@ const Cart = () => {
 
   useEffect(() => {
     getAllData();
+    getTotalCost();
   }, []);
 
   const CreateCartProducts = (obj) => {
@@ -34,8 +56,8 @@ const Cart = () => {
         src={obj.image}
         title={obj.title}
         price={obj.price}
-        rate={obj.rating.rate}
-        count={count}
+        rate={obj.rate}
+        count={obj.quantity}
       />
     );
   };
@@ -94,7 +116,7 @@ const Cart = () => {
                   </div>
                 </div>
 
-                {data.length > 0 && data.map(CreateCartProducts)}
+                {data?.length > 0 && data.map(CreateCartProducts)}
               </div>
             </div>
             <div className="p-2 ">
@@ -116,7 +138,7 @@ const Cart = () => {
                       className="text-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center"
                     >
-                      ₹{data[0].price * count}
+                      ₹{totalCost ? totalCost : 0}
                     </div>
                     <div className="text-sm md:text-md">Shipping</div>
                     <div
@@ -137,20 +159,20 @@ const Cart = () => {
                       className="text-red-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center text-custom"
                     >
-                      ₹{data[0].price * count + 25}
+                      ₹{totalCost ? totalCost+25 : 0}
                     </div>
                   </div>
                 )}
                 <div>
                   <button
-                    className="w-[9em] h-[2.5em] bg-custom 
+                    className="w-[9em] h-[2.8em] bg-custom 
                          rounded-lg text-white font-semibold text-sm sm:text-base 
                          p-3 sm:p-4 flex items-center justify-between"
                   >
                     <span>
                       <CiShoppingCart className="text-white text-3xl" />
                     </span>
-                    Check Out
+                    <span>Check Out</span>
                   </button>
                 </div>
               </div>

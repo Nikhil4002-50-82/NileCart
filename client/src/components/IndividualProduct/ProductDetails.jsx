@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,14 +8,33 @@ import { CiShoppingCart } from "react-icons/ci";
 
 import Card from "../HomePage/Card";
 
+import { UserDataContext } from "../../context/UserDataContext";
+import { SignInContext } from "../../context/SignInContext";
+
 const ProductDetails = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
 
+  const {loggedIn, setLoggedIn} = useContext(SignInContext);
+  const {userData,setUserData}=useContext(UserDataContext);
+
   const [data, setData] = useState(null);
   const [relatedData, setRelatedData] = useState([]);
   const [count, setCount] = useState(1);
+
+  const AddToCart=async()=>{
+    try{
+      await axios.post("http://localhost:3000/addToCart",{
+        userid:userData.id,
+        productid:id,
+        quantity:count
+      })
+    }
+    catch(error){
+      console.log(`error message : ${error.message}`);
+    }
+  }
 
   const getIndividualData = async () => {
     try {
@@ -141,7 +160,7 @@ const ProductDetails = () => {
                              text-white font-semibold text-base sm:text-lg 
                              p-4 sm:p-6 flex items-center justify-between"
                   onClick={() => {
-                    setAddToCartBtn(true);
+                    if(loggedIn)AddToCart();
                   }}
                 >
                   <span>

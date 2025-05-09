@@ -60,9 +60,8 @@ const CartProducts = ({ src, title, rate, count, price }) => {
         <div className="flex justify-center items-center">
           <MdCancel className="text-2xl sm:text-3xl text-custom" />
         </div>
-        
       </div>
-      <hr className="h-[0.1em] min-w-[600px] sm:min-w-[700px] bg-gray-200 mb-2"/>
+      <hr className="h-[0.1em] min-w-[600px] sm:min-w-[700px] bg-gray-200 mb-2" />
     </div>
   );
 };

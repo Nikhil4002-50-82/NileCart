@@ -8,12 +8,14 @@ import { IoReorderFourOutline } from "react-icons/io5";
 
 import { SignInContext } from "../../context/SignInContext";
 import { UserDataContext } from "../../context/UserDataContext";
+import { TotalCostContext } from "../../context/TotalCostContext";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
   const { userData, setUserData } = useContext(UserDataContext);
+  const {totalCost,setTotalCost}=useContext(TotalCostContext);
 
   const [userBtn, setUserBtn] = useState(false);
   const userDropdown = useRef();
@@ -147,7 +149,7 @@ const Header = () => {
                         {userBtn && (
                           <div
                             ref={userDropdown}
-                            className="absolute top-20 left-0 h-auto w-[16em] bg-orange-50 text-custom shadow-custom shadow-2xl rounded-lg"
+                            className="absolute top-20 left-0 h-auto w-[16em] bg-orange-100 text-black shadow-orange-200 shadow-2xl rounded-lg"
                           >
                             <p className="text-xl font-semibold px-6 py-2 flex items-center">
                               <FaUserCheck className="text-orange-200 bg-custom rounded-full h-7 w-7 p-1 mr-2" />
@@ -210,7 +212,7 @@ const Header = () => {
               <div className="flex items-center">
                 {loggedIn && (
                   <div className="mr-2 hidden md:block">
-                    <p className="text-md font-semibold"> ₹2000</p>
+                    <p className="text-md font-semibold"> ₹{totalCost?totalCost:0}</p>
                   </div>
                 )}
                 <div

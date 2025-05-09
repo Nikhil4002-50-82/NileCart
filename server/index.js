@@ -21,7 +21,6 @@ const db = new Pool({
   port:5432,
 })
 
-//to store data from api to database
 app.get("/",async(req,res)=>{
   try{
     const response=await axios.get("https://fakestoreapi.com/products");
@@ -85,6 +84,44 @@ app.post("/userLogin",async(req,res)=>{
   catch(error){
     console.log(`error message:${error.message}`)
     res.status(500).json({ error: "Login failed" });
+  }
+})
+
+app.post("/addToCart",async(req,res)=>{
+  const {userid,productid,quantity}=req.body;
+  try{
+    await db.query("INSERT INTO cart(userid,productid,quantity) VALUES($1,$2,$3)",[userid,productid,quantity])
+    res.status(200).json({message:"product added to cart successfully."});
+  }
+  catch(error){
+    console.log(`error message : ${error.message}`);
+  }
+})
+
+app.get("/getCartItems",async(req,res)=>{
+  const userid=req.query.userid;
+  try{
+    const response=await db.query("SELECT * FROM cart INNER JOIN products ON cart.productid = products.productid WHERE userid=$1",[userid]);
+    res.status(200).json(response.rows)
+  }
+  catch(error){
+    console.log(`error message : ${error.message}`);
+  }
+})
+
+app.get("/getCartTotal",async(req,res)=>{
+  const userid=req.query.userid;
+  let totalCost=0;
+  try{
+    const response=await db.query("SELECT quantity,price FROM cart INNER JOIN products ON cart.productid = products.productid WHERE userid=$1",[userid]);
+    response.rows.map((i)=>{
+      const price=parseFloat(i.price);
+      totalCost+=i.quantity*price;
+    })
+    res.json(totalCost)
+  }
+  catch(error){
+    console.log(`error message : ${error.message}`);
   }
 })
 
