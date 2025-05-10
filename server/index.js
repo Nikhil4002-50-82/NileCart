@@ -56,21 +56,21 @@ mg==
 
 
 
-app.get("/",async(req,res)=>{
-  try{
-    const response=await axios.get("https://fakestoreapi.com/products");
-    const apiData=response.data;
-    for(const product of apiData){
-      const { id: productid, title, price, description, category, image, rating } = product;
-  const { rate, count } = rating || { rate: 0, count: 0 };
-      await db.query("INSERT INTO products VALUES($1,$2,$3,$4,$5,$6,$7,$8)  ON CONFLICT (productid) DO NOTHING",[productid,title,price,description,category,image,rate,count])
-      console.log(response.rows);
-    }  
-  }
-  catch(error){
-    console.log(`error message:${error.message}`)
-  }
-})
+// app.get("/",async(req,res)=>{
+//   try{
+//     const response=await axios.get("https://fakestoreapi.com/products");
+//     const apiData=response.data;
+//     for(const product of apiData){
+//       const { id: productid, title, price, description, category, image, rating } = product;
+//   const { rate, count } = rating || { rate: 0, count: 0 };
+//       await db.query("INSERT INTO products VALUES($1,$2,$3,$4,$5,$6,$7,$8)  ON CONFLICT (productid) DO NOTHING",[productid,title,price,description,category,image,rate,count])
+//       console.log(response.rows);
+//     }  
+//   }
+//   catch(error){
+//     console.log(`error message:${error.message}`)
+//   }
+// })
 
 app.get("/getDataFromProducts",async(req,res)=>{
   try{
