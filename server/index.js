@@ -63,7 +63,7 @@ app.get("/",async(req,res)=>{
     for(const product of apiData){
       const { id: productid, title, price, description, category, image, rating } = product;
   const { rate, count } = rating || { rate: 0, count: 0 };
-      await db.query("INSERT INTO products VALUES($1,$2,$3,$4,$5,$6,$7,$8)",[productid,title,price,description,category,image,rate,count])
+      await db.query("INSERT INTO products VALUES($1,$2,$3,$4,$5,$6,$7,$8)  ON CONFLICT (productid) DO NOTHING",[productid,title,price,description,category,image,rate,count])
       console.log(response.rows);
     }  
   }
