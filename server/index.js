@@ -72,6 +72,10 @@ mg==
 //   }
 // })
 
+app.get("/", (req, res) => {
+  res.status(200).send("API is running...");
+});
+
 app.get("/getDataFromProducts",async(req,res)=>{
   try{
     const response=await db.query("SELECT * FROM products")
