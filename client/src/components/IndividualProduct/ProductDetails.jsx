@@ -25,11 +25,14 @@ const ProductDetails = () => {
 
   const AddToCart = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/addToCart", {
-        userid: userData.id,
-        productid: id,
-        quantity: count,
-      });
+      const response = await axios.post(
+        "https://nilecart.onrender.com/addToCart",
+        {
+          userid: userData.id,
+          productid: id,
+          quantity: count,
+        }
+      );
       alert(response.data.message);
     } catch (error) {
       console.log(`error message : ${error.message}`);
@@ -39,7 +42,7 @@ const ProductDetails = () => {
   const getIndividualData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/getProductById/${id}`
+        `https://nilecart.onrender.com/getProductById/${id}`
       );
       setData(response.data[0]);
     } catch (error) {
@@ -50,7 +53,7 @@ const ProductDetails = () => {
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/getDataFromProducts"
+        "https://nilecart.onrender.com/getDataFromProducts"
       );
       setRelatedData(
         response.data.filter(

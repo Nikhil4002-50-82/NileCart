@@ -13,14 +13,17 @@ const SignUp = () => {
 
   const AddNewUser = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/addUser", {
-        name: name,
-        phoneno: phoneNo,
-        username: userName,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://nilecart.onrender.com/addUser",
+        {
+          name: name,
+          phoneno: phoneNo,
+          username: userName,
+          password: password,
+        }
+      );
       alert("User created successfully!!");
-      navigate("/signIn")
+      navigate("/signIn");
     } catch (error) {
       console.log(`error message : ${error.message}`);
     }

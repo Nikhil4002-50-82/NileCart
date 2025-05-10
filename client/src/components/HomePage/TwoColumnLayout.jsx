@@ -16,7 +16,7 @@ const TwoColumnLayout = () => {
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/getDataFromProducts"
+        "https://nilecart.onrender.com/getDataFromProducts"
       );
       setData(response.data);
     } catch (error) {

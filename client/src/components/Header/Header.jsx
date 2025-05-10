@@ -79,7 +79,9 @@ const Header = () => {
                 <div className="flex items-center">
                   {loggedIn && (
                     <div className="md:hidden mr-1">
-                      <p className="text-md font-semibold">₹{totalCost?totalCost:0}</p>
+                      <p className="text-md font-semibold">
+                        ₹{totalCost ? totalCost : 0}
+                      </p>
                     </div>
                   )}
                   <div
@@ -96,7 +98,7 @@ const Header = () => {
                                font-semibold rounded-3xl absolute -top-1 -right-1 
                                flex items-center justify-center text-[0.6rem] sm:text-xs"
                     >
-                      {productsCount?productsCount:0}
+                      {productsCount ? productsCount : 0}
                     </div>
                   </div>
                 </div>
@@ -235,7 +237,7 @@ const Header = () => {
                                -top-1 -right-1 flex items-center justify-center 
                                text-[0.6rem] sm:text-xs"
                   >
-                    {productsCount?productsCount:0}
+                    {productsCount ? productsCount : 0}
                   </div>
                 </div>
               </div>

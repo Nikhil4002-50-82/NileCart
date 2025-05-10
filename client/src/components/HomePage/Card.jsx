@@ -11,7 +11,7 @@ const Card = ({ src, title, price, onClick }) => {
         <div
           className={`w-full h-[12em] sm:h-[14em] md:h-[16em] mb-1 rounded-t-2xl 
                      object-cover bg-center bg-cover`}
-                     style={{ backgroundImage: `url(${src})` }}
+          style={{ backgroundImage: `url(${src})` }}
         ></div>
         <div className="p-2 sm:p-3 md:p-4">
           <p className="text-xs sm:text-sm font-semibold mb-1">{title}</p>

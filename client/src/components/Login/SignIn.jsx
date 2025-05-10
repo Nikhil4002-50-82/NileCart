@@ -12,14 +12,17 @@ const SignIn = () => {
   const { loggedIn, setLoggedIn } = useContext(SignInContext);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const {userData, setUserData} = useContext(UserDataContext);
+  const { userData, setUserData } = useContext(UserDataContext);
 
   const VerifyUserForLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/userLogin", {
-        username: userName,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://nilecart.onrender.com/userLogin",
+        {
+          username: userName,
+          password: password,
+        }
+      );
       alert(response.data.message);
       if (response.data.user) {
         setUserData(response.data.user[0]);

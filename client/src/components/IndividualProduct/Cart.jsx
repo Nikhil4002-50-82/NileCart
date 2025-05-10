@@ -22,11 +22,14 @@ const Cart = () => {
 
   const getTotalCost = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/getCartTotal/", {
-        params: {
-          userid: userData.id,
-        },
-      });
+      const response = await axios.get(
+        "https://nilecart.onrender.com/getCartTotal/",
+        {
+          params: {
+            userid: userData.id,
+          },
+        }
+      );
       setTotalCost(response.data.totalCost);
       setProductsCount(response.data.totalCount);
     } catch (error) {
@@ -36,11 +39,14 @@ const Cart = () => {
 
   const getAllData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/getCartItems", {
-        params: {
-          userid: userData.id,
-        },
-      });
+      const response = await axios.get(
+        "https://nilecart.onrender.com/getCartItems",
+        {
+          params: {
+            userid: userData.id,
+          },
+        }
+      );
       setData(response.data);
     } catch (error) {
       console.log(`error message: ${error.message}`);
@@ -73,7 +79,8 @@ const Cart = () => {
           <div className="px-6 md:px-16">
             <h1 className="text-base sm:text-lg font-semibold">YOUR CART</h1>
             <p className="text-sm sm:text-md text-gray-700 mb-3 sm:mb-4">
-              There are <span className="text-custom font-semibold">{productsCount}</span>{" "}
+              There are{" "}
+              <span className="text-custom font-semibold">{productsCount}</span>{" "}
               products in your cart
             </p>
           </div>
