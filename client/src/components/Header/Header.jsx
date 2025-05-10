@@ -79,7 +79,7 @@ const Header = () => {
                 <div className="flex items-center">
                   {loggedIn && (
                     <div className="md:hidden mr-1">
-                      <p className="text-md font-semibold"> ₹2000</p>
+                      <p className="text-md font-semibold">₹{totalCost?totalCost:0}</p>
                     </div>
                   )}
                   <div

@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import { Pool } from 'pg';
 import axios from 'axios';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app=express();
 const port=3000;
@@ -14,12 +17,44 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 
 const db = new Pool({
-  host:"localhost",
-  user:"postgres",
-  password:"5432",
-  database:"NileCart",
-  port:5432,
+  user: process.env.dbuser,
+    password: process.env.dbpassword,
+    host: process.env.dbhost,
+    port: 22862,
+    database: process.env.dbname,
+     ssl: {
+    ca: `-----BEGIN CERTIFICATE-----
+MIIETTCCArWgAwIBAgIUOPpKjInr+4fZb+Bd+yB3lWtuZrgwDQYJKoZIhvcNAQEM
+BQAwQDE+MDwGA1UEAww1NTdhYWE5NmQtODY2Ny00MjFkLTgwMTgtMzg1YTFlZTlm
+YjU2IEdFTiAxIFByb2plY3QgQ0EwHhcNMjUwNTEwMTQ0MDEwWhcNMzUwNTA4MTQ0
+MDEwWjBAMT4wPAYDVQQDDDU1N2FhYTk2ZC04NjY3LTQyMWQtODAxOC0zODVhMWVl
+OWZiNTYgR0VOIDEgUHJvamVjdCBDQTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCC
+AYoCggGBAM2jvaQ2Uchesl99qIYs6fWg3oiWwgV0YrEPwRUTvzXFL3iG4Ly9dzo5
+R1/lS49SasCQkUl4gmeR1zbA1XP7Y5wmHY7hDM7iIAMREoX2eNTSW5FC+rmeVwar
+VXhv4TLNGurQVKcIH8T5pWJ8bYRzsmEuqWJXjUXXF+BBh+U2Bmgrc5CEZfYIgc/D
+uJuBJuaKQu1NGlLnbS9oKeBGPWyM9gyFDyCi7XATZUsahlnIWfcVj3zwbYQciTvK
+cxoDzV6Fotdi7emrEOw7Mw72SO5XCuCI81qbpupXPvlGpDN4t/WLzyDPzE+/kCn7
+HJGgHScIHx3GO4cETi6f8kRuibMM2wTOWaYUWovS6RbasLyREkECVwGyqSootAI8
+V6NzkmyuFxGq1m9g08awW/YdpLOlNyGbLgSMCdbSEqMmGWreDjS+6hhlP1t2boyL
+qFEre/5k19u9M9Pr/qXXBNmEBWOHc8ZNr+graKLMZVR9oDhW9viO4kw+N7qetGV9
+9nFoA7V8wQIDAQABoz8wPTAdBgNVHQ4EFgQUIVQ5IVl/8eAPWWG6q+C5XgONfCAw
+DwYDVR0TBAgwBgEB/wIBADALBgNVHQ8EBAMCAQYwDQYJKoZIhvcNAQEMBQADggGB
+AHL0BUduSoKVkBm4/i1Fxn2B4iaXEJg+QQcUCJ5gg63G26ppRB5+IZJKuOVJymaz
++h+MVrfWtuwnjWz9wx3BRX6DJv5s/F8a0iepHsX5CY0d24kmMBzyXZlrrHyrYCjf
+iRxunuEU0kBmqbd85mtxGSI2cPrmfa8eNnrjbrqU4ji7N2WrV0Vi9uKsvcCI+TpA
+LJQwzkbB/vBS0b2E9b/nKOWQ9B1/twIuXJJVAEmS2O8ZjvRRXs5cehKjR5GD7LjC
+mZB0GCFhPUYUX5bp4uMNKWyvq0s02F9BG17jq8X4JilxiYgX8je0pWB0edFxcQYa
+KWwm9uMAkfZcjwTpgKJa0wzozeGNuLRabCv8tXNmhNVHGn3MGRS1kqngkP55YEZl
+BS0CY6o5HkG3MMTXcKczo/Umke71OoefrZS5HJ1mvtpjPPyYvir8j7V9LhbAz82F
+k2Mop6q6rWAri/6h81cD/o1bNt5brGeG9w4DUegAF8qX7+OMAvNFPo7aDXCfa8Cg
+mg==
+-----END CERTIFICATE-----
+`,
+    rejectUnauthorized: true
+  }
 })
+
+
 
 app.get("/",async(req,res)=>{
   try{
