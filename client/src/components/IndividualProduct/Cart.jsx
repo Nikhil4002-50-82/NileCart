@@ -53,6 +53,19 @@ const Cart = () => {
     }
   };
 
+  const deleteItemFromCart=async(productid)=>{
+    try{
+      const response=await axios.post("https://nilecart.onrender.com/deleteItemFromCart",{
+        userid:userData.id,
+        productid:productid
+      })
+      alert(response.data.message)
+    }
+    catch(error){
+      console.log(`error message : ${error.message}`);
+    }
+  }
+
   useEffect(() => {
     getAllData();
     getTotalCost();
@@ -68,6 +81,7 @@ const Cart = () => {
         price={obj.price}
         rate={obj.rate}
         count={obj.quantity}
+        onClick={()=>deleteItemFromCart(obj.productid)}
       />
     );
   };

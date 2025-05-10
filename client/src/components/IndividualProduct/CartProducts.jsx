@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa6";
 import { MdOutlineAdd, MdCancel } from "react-icons/md";
 
-const CartProducts = ({ src, title, rate, count, price }) => {
+const CartProducts = ({ src, title, rate, count, price,onClick }) => {
   const [CountState, setCountState] = useState(count);
   return (
     <div>
@@ -57,7 +57,7 @@ const CartProducts = ({ src, title, rate, count, price }) => {
         <div className="flex justify-center items-center">
           <p className="text-xs sm:text-sm">₹{price * CountState}</p>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center" onClick={onClick}>
           <MdCancel className="text-2xl sm:text-3xl text-custom" />
         </div>
       </div>
