@@ -30,7 +30,7 @@ const Cart = () => {
           },
         }
       );
-      setTotalCost(response.data.totalCost);
+      setTotalCost(response.data.totalCost.toFixed(2));
       setProductsCount(response.data.totalCount);
     } catch (error) {
       console.log(`error message : ${error.message}`);
@@ -156,7 +156,7 @@ const Cart = () => {
                       className="flex justify-end items-center font-semibold 
                            text-sm sm:text-md text-green-600"
                     >
-                      ₹25
+                      Free
                     </div>
                     <div className="text-sm md:text-md">Estimate For</div>
                     <div
@@ -170,7 +170,7 @@ const Cart = () => {
                       className="text-red-custom font-semibold text-sm sm:text-md 
                            flex justify-end items-center text-custom"
                     >
-                      ₹{totalCost ? totalCost + 25 : 0}
+                      ₹{totalCost ? totalCost : 0}
                     </div>
                   </div>
                 )}
