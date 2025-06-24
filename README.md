@@ -1,2 +1,2 @@
 # Ecommerce-website
-https://shopify-clone-nikhil.netlify.app/
+https://nilecart.netlify.app/
