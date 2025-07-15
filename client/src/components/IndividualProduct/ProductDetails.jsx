@@ -26,7 +26,7 @@ const ProductDetails = () => {
   const AddToCart = async () => {
     try {
       const response = await axios.post(
-        "https://nilecart.onrender.com/addToCart",
+        "http://localhost:3000/addToCart",
         {
           userid: userData.id,
           productid: id,
@@ -42,7 +42,7 @@ const ProductDetails = () => {
   const getIndividualData = async () => {
     try {
       const response = await axios.get(
-        `https://nilecart.onrender.com/getProductById/${id}`
+        `http://localhost:3000/getProductById/${id}`
       );
       setData(response.data[0]);
     } catch (error) {
@@ -53,7 +53,7 @@ const ProductDetails = () => {
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "https://nilecart.onrender.com/getDataFromProducts"
+        "http://localhost:3000/getDataFromProducts"
       );
       setRelatedData(
         response.data.filter(

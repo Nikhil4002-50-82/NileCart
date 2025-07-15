@@ -23,7 +23,7 @@ const Cart = () => {
   const getTotalCost = async () => {
     try {
       const response = await axios.get(
-        "https://nilecart.onrender.com/getCartTotal/",
+        "http://localhost:3000/getCartTotal/",
         {
           params: {
             userid: userData.id,
@@ -40,7 +40,7 @@ const Cart = () => {
   const getAllData = async () => {
     try {
       const response = await axios.get(
-        "https://nilecart.onrender.com/getCartItems",
+        "http://localhost:3000/getCartItems",
         {
           params: {
             userid: userData.id,
@@ -55,7 +55,7 @@ const Cart = () => {
 
   const deleteItemFromCart=async(productid)=>{
     try{
-      const response=await axios.post("https://nilecart.onrender.com/deleteItemFromCart",{
+      const response=await axios.post("http://localhost:3000/deleteItemFromCart",{
         userid:userData.id,
         productid:productid
       })

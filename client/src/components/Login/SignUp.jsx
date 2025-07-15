@@ -14,7 +14,7 @@ const SignUp = () => {
   const AddNewUser = async () => {
     try {
       const response = await axios.post(
-        "https://nilecart.onrender.com/addUser",
+        "http://localhost:3000/addUser",
         {
           name: name,
           phoneno: phoneNo,

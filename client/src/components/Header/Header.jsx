@@ -32,11 +32,6 @@ const Header = () => {
     document.addEventListener("mousedown", outsideClick);
   }, []);
 
-  // useEffect(() => {
-  //   if (userBtn) document.body.style.overflow = "hidden";
-  //   else document.body.style.overflow = "auto";
-  // }, [userBtn]);
-
   return (
     <div className="relative">
       <div className="h-[17em] sm:h-[16em] md:h-[9em]">
